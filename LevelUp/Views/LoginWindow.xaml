@@ -1,0 +1,205 @@
+﻿<Window x:Class="LevelUp.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="LevelUp - Iniciar sesión"
+        Height="650"
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#F8F5FA">
+
+    <Window.Resources>
+
+        <SolidColorBrush x:Key="Morado" Color="#7954A1"/>
+        <SolidColorBrush x:Key="MoradoClaro" Color="#EEE5F5"/>
+        <SolidColorBrush x:Key="Rosa" Color="#E9A9C5"/>
+        <SolidColorBrush x:Key="Texto" Color="#382D43"/>
+        <SolidColorBrush x:Key="Gris" Color="#938A99"/>
+
+        <Style x:Key="CampoTexto" TargetType="TextBox">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Padding" Value="13,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#382D43"/>
+            <Setter Property="Background" Value="#F7F3F9"/>
+            <Setter Property="BorderBrush" Value="#E5DAEB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="BotonPrincipal" TargetType="Button">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Background" Value="#7954A1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="9">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#68438F"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.55"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="440"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ZONA DECORATIVA -->
+        <Grid Grid.Column="0" Background="#7954A1">
+
+            <Ellipse Width="330" Height="330"
+                     Fill="#9475B4"
+                     Opacity="0.45"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Margin="-130,-120,0,0"/>
+
+            <Ellipse Width="260" Height="260"
+                     Fill="#E9A9C5"
+                     Opacity="0.22"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Bottom"
+                     Margin="0,0,-100,-80"/>
+
+            <Ellipse Width="110" Height="110"
+                     Fill="#D8C1E9"
+                     Opacity="0.35"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Top"
+                     Margin="0,90,35,0"/>
+
+            <StackPanel VerticalAlignment="Center"
+                        Margin="55,0,45,0">
+
+                <Border Background="#A98BC4"
+                        CornerRadius="15"
+                        Width="65"
+                        Height="65"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,30">
+                    <TextBlock Text="L"
+                               FontSize="38"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+
+                <TextBlock Text="LevelUp"
+                           FontSize="43"
+                           FontWeight="Bold"
+                           Foreground="White"/>
+
+                <Border Width="65"
+                        Height="4"
+                        Background="#E9A9C5"
+                        HorizontalAlignment="Left"
+                        Margin="0,18,0,22"/>
+
+                <TextBlock Text="Convierte tus objetivos&#10;en nuevos logros."
+                           FontSize="23"
+                           Foreground="#F5EAF9"
+                           LineHeight="34"/>
+
+                <TextBlock Text="Cada misión cuenta."
+                           FontSize="15"
+                           Foreground="#DCCBE9"
+                           Margin="0,25,0,0"/>
+
+            </StackPanel>
+
+            <TextBlock Text="LEVELUP · TU PROGRESO"
+                       Foreground="#DCCBE9"
+                       FontSize="10"
+                       FontWeight="SemiBold"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Margin="0,0,0,30"/>
+
+        </Grid>
+
+        <!-- FORMULARIO -->
+        <Grid Grid.Column="1">
+            <StackPanel Width="345"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+
+                <TextBlock Text="Bienvenido"
+                           FontSize="31"
+                           FontWeight="Bold"
+                           Foreground="#382D43"/>
+
+                <TextBlock Text="Accede a tu cuenta de LevelUp"
+                           FontSize="14"
+                           Foreground="#938A99"
+                           Margin="0,8,0,38"/>
+
+                <TextBlock Text="Correo electrónico"
+                           FontWeight="SemiBold"
+                           Foreground="#493B53"
+                           Margin="0,0,0,9"/>
+
+                <TextBox x:Name="txtCorreo"
+                         Style="{StaticResource CampoTexto}"
+                         ToolTip="Introduce tu correo electrónico"/>
+
+                <TextBlock Text="Contraseña"
+                           FontWeight="SemiBold"
+                           Foreground="#493B53"
+                           Margin="0,23,0,9"/>
+
+                <PasswordBox x:Name="txtPassword"
+                             Height="45"
+                             Padding="13,0"
+                             FontSize="14"
+                             Foreground="#382D43"
+                             Background="#F7F3F9"
+                             BorderBrush="#E5DAEB"
+                             BorderThickness="1"
+                             VerticalContentAlignment="Center"/>
+
+                <Button x:Name="btnLogin"
+                        Content="Iniciar sesión"
+                        Style="{StaticResource BotonPrincipal}"
+                        Margin="0,32,0,0"/>
+
+                <TextBlock x:Name="txtError"
+                           Text=""
+                           Foreground="#C34E79"
+                           FontSize="12"
+                           TextWrapping="Wrap"
+                           Margin="0,14,0,0"
+                           TextAlignment="Center"/>
+
+                <TextBlock Text="Acceso exclusivo para usuarios registrados"
+                           Foreground="#A59AA9"
+                           FontSize="11"
+                           TextAlignment="Center"
+                           Margin="0,45,0,0"/>
+
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>
