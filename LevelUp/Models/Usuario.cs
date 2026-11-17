@@ -15,6 +15,6 @@ namespace LevelUp.Models
 
         public int Experiencia { get; set; }
 
-        public int Puntos { get; set; }
+        
     }
 }

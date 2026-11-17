@@ -19,7 +19,7 @@ namespace LevelUp.Views
     {
         public LoginWindow()
         {
-            
+            InitializeComponent();
         }
 
         
