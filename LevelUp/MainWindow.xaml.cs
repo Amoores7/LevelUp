@@ -1,59 +1,47 @@
-﻿using System.Text;
+﻿
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using LevelUp.Views;
 
 namespace LevelUp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+
+            // Mostrar Inicio al abrir la aplicación
+            MostrarInicio();
+        }
+
+        private void MostrarInicio()
+        {
+           
         }
 
         private void btnInicio_Click(object sender, RoutedEventArgs e)
         {
-
+            MostrarInicio();
         }
 
         private void btnMisiones_Click(object sender, RoutedEventArgs e)
         {
-
+            ContenedorVistas.Content = new MisionesView();
+            txtTituloPagina.Text = "Misiones";
         }
 
         private void btnLogros_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnActividad_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void listaActividades_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void listaMisiones_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void btnPerfil_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }

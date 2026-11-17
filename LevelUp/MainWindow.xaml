@@ -31,6 +31,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -42,6 +43,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#E5D9EF"/>
@@ -61,6 +63,7 @@
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Margin" Value="3"/>
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -72,10 +75,12 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#68438F"/>
                 </Trigger>
+
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Opacity" Value="0.5"/>
                 </Trigger>
@@ -93,6 +98,7 @@
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Margin" Value="3"/>
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -104,6 +110,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#E3D5ED"/>
@@ -153,7 +160,7 @@
             <Setter Property="FontSize" Value="13"/>
         </Style>
 
-        <!-- TABCONTROL INTERNO -->
+        <!-- TABCONTROL -->
         <Style TargetType="TabControl">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="#E9E0ED"/>
@@ -165,6 +172,7 @@
             <Setter Property="Background" Value="#EEE5F5"/>
             <Setter Property="Padding" Value="16,10"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TabItem">
@@ -173,10 +181,12 @@
                                 CornerRadius="7,7,0,0"
                                 Padding="{TemplateBinding Padding}"
                                 Margin="2,0">
+
                             <ContentPresenter ContentSource="Header"
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Center"/>
                         </Border>
+
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter TargetName="TabBorder"
@@ -184,6 +194,7 @@
                                         Value="#7954A1"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Trigger>
+
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="TabBorder"
                                         Property="Opacity"
@@ -197,7 +208,9 @@
 
     </Window.Resources>
 
+    <!-- ESTRUCTURA PRINCIPAL -->
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="225"/>
             <ColumnDefinition Width="*"/>
@@ -208,6 +221,7 @@
         <!-- ====================================== -->
 
         <Grid Grid.Column="0" Background="#EEE5F5">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="105"/>
                 <RowDefinition Height="*"/>
@@ -224,6 +238,7 @@
                         Height="43"
                         Background="#7954A1"
                         CornerRadius="11">
+
                     <TextBlock Text="L"
                                FontSize="28"
                                FontWeight="Bold"
@@ -234,10 +249,12 @@
 
                 <StackPanel VerticalAlignment="Center"
                             Margin="12,0,0,0">
+
                     <TextBlock Text="LevelUp"
                                FontSize="22"
                                FontWeight="Bold"
                                Foreground="#54376F"/>
+
                     <TextBlock Text="TU PROGRESO"
                                FontSize="9"
                                Foreground="#9988A8"
@@ -293,7 +310,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- ESPACIO PARA IMAGEN -->
+                    <!-- IMAGEN DEL USUARIO -->
                     <Border Width="37"
                             Height="37"
                             Background="#F9EAF1"
@@ -302,6 +319,7 @@
                     <StackPanel Grid.Column="1"
                                 VerticalAlignment="Center"
                                 Margin="9,0,0,0">
+
                         <TextBlock x:Name="txtNombreMenu"
                                    FontWeight="SemiBold"
                                    Foreground="#54376F"
@@ -314,6 +332,7 @@
                     </StackPanel>
                 </Grid>
             </Border>
+
         </Grid>
 
         <!-- ====================================== -->
@@ -335,12 +354,14 @@
                     BorderThickness="0,0,0,1">
 
                 <Grid Margin="30,0">
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
                     <StackPanel VerticalAlignment="Center">
+
                         <TextBlock x:Name="txtTituloPagina"
                                    Text="Inicio"
                                    FontSize="17"
@@ -363,6 +384,7 @@
                                    FontSize="12"
                                    FontWeight="SemiBold"/>
                     </Border>
+
                 </Grid>
             </Border>
 
@@ -370,709 +392,9 @@
             <!-- CONTENEDOR DE LAS VISTAS -->
             <!-- ================================== -->
 
-            <Grid Grid.Row="1" Margin="25,20,25,15">
-
-                <!-- ================================== -->
-                <!-- INICIO -->
-                <!-- ================================== -->
-
-                <Grid x:Name="vistaInicio"
-                      Visibility="Visible">
-
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel Margin="5,15,5,20">
-
-                            <TextBlock Text="Inicio"
-                                       Style="{StaticResource TituloSeccion}"/>
-
-                            <TextBlock Text="Resumen de tu progreso"
-                                       Style="{StaticResource Subtitulo}"
-                                       Margin="0,5,0,25"/>
-
-                            <!-- EXPERIENCIA Y NIVEL -->
-                            <Border Background="#7954A1"
-                                    CornerRadius="13"
-                                    Padding="25"
-                                    Margin="0,0,0,22">
-
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="190"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <StackPanel VerticalAlignment="Center">
-
-                                        <TextBlock x:Name="txtNombreInicio"
-                                                   FontSize="24"
-                                                   FontWeight="Bold"
-                                                   Foreground="White"/>
-
-                                        <TextBlock x:Name="txtEmailInicio"
-                                                   Foreground="#E4D8EE"
-                                                   FontSize="12"
-                                                   Margin="0,5,0,18"/>
-
-                                        <TextBlock x:Name="txtExperiencia"
-                                                   Foreground="White"
-                                                   FontSize="13"/>
-
-                                        <ProgressBar x:Name="barraExperiencia"
-                                                     Height="9"
-                                                     Width="250"
-                                                     HorizontalAlignment="Left"
-                                                     Margin="0,10,0,0"
-                                                     Maximum="100"
-                                                     Value="0"
-                                                     Background="#A98BC4"
-                                                     Foreground="#E9A9C5"/>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Column="1"
-                                                VerticalAlignment="Center"
-                                                HorizontalAlignment="Center">
-
-                                        <TextBlock Text="NIVEL"
-                                                   FontSize="11"
-                                                   Foreground="#E4D8EE"
-                                                   HorizontalAlignment="Center"/>
-
-                                        <TextBlock x:Name="txtNivel"
-                                                   FontSize="65"
-                                                   FontWeight="Bold"
-                                                   Foreground="White"
-                                                   HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-
-                            <!-- ESTADÍSTICAS -->
-                            <Grid Margin="0,0,0,23">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Border Grid.Column="0"
-                                        Background="White"
-                                        BorderBrush="#E9E0ED"
-                                        BorderThickness="1"
-                                        CornerRadius="10"
-                                        Padding="18"
-                                        Margin="0,0,12,0">
-                                    <StackPanel>
-                                        <TextBlock Text="EXPERIENCIA TOTAL"
-                                                   Foreground="#A18DAF"
-                                                   FontSize="10"
-                                                   FontWeight="Bold"/>
-
-                                        <TextBlock x:Name="txtTotalXP"
-                                                   FontSize="29"
-                                                   FontWeight="Bold"
-                                                   Foreground="#7954A1"
-                                                   Margin="0,9,0,0"/>
-                                    </StackPanel>
-                                </Border>
-
-                                <Border Grid.Column="1"
-                                        Background="#F9EAF1"
-                                        CornerRadius="10"
-                                        Padding="18"
-                                        Margin="6,0">
-                                    <StackPanel>
-                                        <TextBlock Text="MISIONES COMPLETADAS"
-                                                   Foreground="#B16D8D"
-                                                   FontSize="10"
-                                                   FontWeight="Bold"/>
-
-                                        <TextBlock x:Name="txtTotalMisiones"
-                                                   FontSize="29"
-                                                   FontWeight="Bold"
-                                                   Foreground="#A6537C"
-                                                   Margin="0,9,0,0"/>
-                                    </StackPanel>
-                                </Border>
-
-                                <Border Grid.Column="2"
-                                        Background="#EEE5F5"
-                                        CornerRadius="10"
-                                        Padding="18"
-                                        Margin="12,0,0,0">
-                                    <StackPanel>
-                                        <TextBlock Text="LOGROS"
-                                                   Foreground="#9479A7"
-                                                   FontSize="10"
-                                                   FontWeight="Bold"/>
-
-                                        <TextBlock x:Name="txtTotalLogros"
-                                                   FontSize="29"
-                                                   FontWeight="Bold"
-                                                   Foreground="#7954A1"
-                                                   Margin="0,9,0,0"/>
-                                    </StackPanel>
-                                </Border>
-                            </Grid>
-
-                            <!-- INFORMACIÓN RELEVANTE -->
-                            <TextBlock Text="Información relevante"
-                                       FontSize="17"
-                                       FontWeight="Bold"
-                                       Foreground="#493B53"
-                                       Margin="0,0,0,12"/>
-
-                            <Border Style="{StaticResource Tarjeta}"
-                                    MinHeight="150">
-                                <Grid x:Name="panelInformacionRelevante"/>
-                            </Border>
-
-                        </StackPanel>
-                    </ScrollViewer>
-                </Grid>
-
-                <!-- ================================== -->
-                <!-- MISIONES -->
-                <!-- ================================== -->
-
-                <Grid x:Name="vistaMisiones"
-                      Visibility="Collapsed">
-
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <StackPanel Grid.Row="0">
-                            <TextBlock Text="Misiones"
-                                       Style="{StaticResource TituloSeccion}"/>
-
-                            <TextBlock Text="Gestiona tus objetivos y registra tu progreso"
-                                       Style="{StaticResource Subtitulo}"
-                                       Margin="0,5,0,20"/>
-                        </StackPanel>
-
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="15"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <!-- LISTADO -->
-                            <Grid Grid.Column="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <Grid Grid.Row="0" Margin="0,0,0,12">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="160"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBox x:Name="txtBuscarMision"
-                                             Style="{StaticResource Campo}"
-                                             ToolTip="Buscar misión"/>
-
-                                    <ComboBox x:Name="cmbFiltroEstado"
-                                              Grid.Column="1"
-                                              Height="36"
-                                              Margin="10,0,0,0"
-                                              Padding="7"
-                                              Background="White"
-                                              BorderBrush="#E5DAEB"
-                                              ToolTip="Filtrar por estado"/>
-                                </Grid>
-
-                                <ListView x:Name="listaMisiones"
-                                          Grid.Row="1"
-                                          Style="{StaticResource Lista}"
-                                          SelectionChanged="listaMisiones_SelectionChanged">
-
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn Header="Título"
-                                                            DisplayMemberBinding="{Binding Titulo}"
-                                                            Width="180"/>
-
-                                            <GridViewColumn Header="Categoría"
-                                                            DisplayMemberBinding="{Binding Categoria}"
-                                                            Width="110"/>
-
-                                            <GridViewColumn Header="XP"
-                                                            DisplayMemberBinding="{Binding Experiencia}"
-                                                            Width="65"/>
-
-                                            <GridViewColumn Header="Estado"
-                                                            DisplayMemberBinding="{Binding Estado}"
-                                                            Width="100"/>
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-
-                                <TextBlock x:Name="txtTotalMisionesListado"
-                                           Grid.Row="2"
-                                           Foreground="#918797"
-                                           FontSize="12"
-                                           Margin="2,10,0,0"/>
-                            </Grid>
-
-                            <!-- PANEL DE GESTIÓN -->
-                            <Border Grid.Column="2"
-                                    Background="#F9F5FB"
-                                    BorderBrush="#E9E0ED"
-                                    BorderThickness="1"
-                                    CornerRadius="10"
-                                    Padding="15">
-
-                                <TabControl>
-
-                                    <TabItem Header="Detalles">
-                                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                            <StackPanel Margin="8">
-
-                                                <TextBlock Text="Título"
-                                                           FontSize="11"
-                                                           FontWeight="SemiBold"
-                                                           Foreground="#918797"/>
-
-                                                <TextBox x:Name="txtTituloMision"
-                                                         Style="{StaticResource Campo}"
-                                                         Margin="0,6,0,14"/>
-
-                                                <TextBlock Text="Descripción"
-                                                           FontSize="11"
-                                                           FontWeight="SemiBold"
-                                                           Foreground="#918797"/>
-
-                                                <TextBox x:Name="txtDescripcionMision"
-                                                         Height="80"
-                                                         Padding="9"
-                                                         TextWrapping="Wrap"
-                                                         AcceptsReturn="True"
-                                                         VerticalScrollBarVisibility="Auto"
-                                                         Background="#FBF9FC"
-                                                         BorderBrush="#E5DAEB"
-                                                         BorderThickness="1"
-                                                         Margin="0,6,0,14"/>
-
-                                                <TextBlock Text="Categoría"
-                                                           FontSize="11"
-                                                           FontWeight="SemiBold"
-                                                           Foreground="#918797"/>
-
-                                                <ComboBox x:Name="cmbCategoriaMision"
-                                                          Height="36"
-                                                          Margin="0,6,0,14"
-                                                          Padding="7"
-                                                          Background="White"
-                                                          BorderBrush="#E5DAEB"/>
-
-                                                <TextBlock Text="Experiencia"
-                                                           FontSize="11"
-                                                           FontWeight="SemiBold"
-                                                           Foreground="#918797"/>
-
-                                                <TextBox x:Name="txtExperienciaMision"
-                                                         Style="{StaticResource Campo}"
-                                                         Margin="0,6,0,14"/>
-
-                                                <TextBlock Text="Fecha límite"
-                                                           FontSize="11"
-                                                           FontWeight="SemiBold"
-                                                           Foreground="#918797"/>
-
-                                                <DatePicker x:Name="dpFechaMision"
-                                                            Height="36"
-                                                            Margin="0,6,0,14"/>
-
-                                                <TextBlock Text="Estado"
-                                                           FontSize="11"
-                                                           FontWeight="SemiBold"
-                                                           Foreground="#918797"/>
-
-                                                <ComboBox x:Name="cmbEstadoMision"
-                                                          Height="36"
-                                                          Margin="0,6,0,14"
-                                                          Padding="7"
-                                                          Background="White"
-                                                          BorderBrush="#E5DAEB"/>
-
-                                            </StackPanel>
-                                        </ScrollViewer>
-                                    </TabItem>
-
-                                    <TabItem Header="Gestión">
-                                        <StackPanel Margin="8">
-
-                                            <Button x:Name="btnNuevoMision"
-                                                    Content="Nueva misión"
-                                                    Style="{StaticResource BotonMorado}"/>
-
-                                            <Button x:Name="btnGuardarMision"
-                                                    Content="Guardar misión"
-                                                    Style="{StaticResource BotonMorado}"/>
-
-                                            <Button x:Name="btnModificarMision"
-                                                    Content="Modificar misión"
-                                                    Style="{StaticResource BotonSecundario}"/>
-
-                                            <Button x:Name="btnEliminarMision"
-                                                    Content="Eliminar misión"
-                                                    Style="{StaticResource BotonSecundario}"/>
-
-                                            <Button x:Name="btnLimpiarMision"
-                                                    Content="Limpiar campos"
-                                                    Style="{StaticResource BotonSecundario}"/>
-
-                                        </StackPanel>
-                                    </TabItem>
-
-                                </TabControl>
-                            </Border>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-                <!-- ================================== -->
-                <!-- LOGROS -->
-                <!-- ================================== -->
-
-                <Grid x:Name="vistaLogros"
-                      Visibility="Collapsed">
-
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <StackPanel Grid.Row="0">
-                            <TextBlock Text="Logros"
-                                       Style="{StaticResource TituloSeccion}"/>
-
-                            <TextBlock Text="Consulta tus logros y recompensas"
-                                       Style="{StaticResource Subtitulo}"
-                                       Margin="0,5,0,20"/>
-                        </StackPanel>
-
-                        <Border Grid.Row="1"
-                                Style="{StaticResource Tarjeta}">
-                            <Grid x:Name="panelListaLogros"/>
-                        </Border>
-                    </Grid>
-                </Grid>
-
-                <!-- ================================== -->
-                <!-- ACTIVIDAD -->
-                <!-- ================================== -->
-
-                <Grid x:Name="vistaActividad"
-                      Visibility="Collapsed">
-
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <StackPanel Grid.Row="0">
-                            <TextBlock Text="Actividad"
-                                       Style="{StaticResource TituloSeccion}"/>
-
-                            <TextBlock Text="Registra y administra el tiempo dedicado a tus misiones"
-                                       Style="{StaticResource Subtitulo}"
-                                       Margin="0,5,0,20"/>
-                        </StackPanel>
-
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="15"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <!-- LISTADO DE ACTIVIDADES -->
-                            <Grid Grid.Column="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-
-                                <TextBox x:Name="txtBuscarActividad"
-                                         Grid.Row="0"
-                                         Style="{StaticResource Campo}"
-                                         ToolTip="Buscar actividad"
-                                         Margin="0,0,0,12"/>
-
-                                <ListView x:Name="listaActividades"
-                                          Grid.Row="1"
-                                          Style="{StaticResource Lista}"
-                                          SelectionChanged="listaActividades_SelectionChanged">
-
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn Header="Actividad"
-                                                            DisplayMemberBinding="{Binding Descripcion}"
-                                                            Width="190"/>
-
-                                            <GridViewColumn Header="Misión"
-                                                            DisplayMemberBinding="{Binding Mision}"
-                                                            Width="130"/>
-
-                                            <GridViewColumn Header="Tiempo"
-                                                            DisplayMemberBinding="{Binding Tiempo}"
-                                                            Width="90"/>
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Grid>
-
-                            <!-- FORMULARIO DE ACTIVIDAD -->
-                            <Border Grid.Column="2"
-                                    Background="#F9F5FB"
-                                    BorderBrush="#E9E0ED"
-                                    BorderThickness="1"
-                                    CornerRadius="10"
-                                    Padding="18">
-
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                    <StackPanel>
-
-                                        <TextBlock Text="Gestionar actividad"
-                                                   FontSize="17"
-                                                   FontWeight="Bold"
-                                                   Foreground="#54376F"
-                                                   Margin="0,0,0,18"/>
-
-                                        <TextBlock Text="Descripción"
-                                                   Foreground="#918797"
-                                                   FontSize="11"/>
-
-                                        <TextBox x:Name="txtDescripcionActividad"
-                                                 Style="{StaticResource Campo}"
-                                                 Margin="0,6,0,14"/>
-
-                                        <TextBlock Text="Misión relacionada"
-                                                   Foreground="#918797"
-                                                   FontSize="11"/>
-
-                                        <ComboBox x:Name="cmbMisionActividad"
-                                                  Height="36"
-                                                  Margin="0,6,0,14"
-                                                  Padding="7"
-                                                  Background="White"
-                                                  BorderBrush="#E5DAEB"/>
-
-                                        <TextBlock Text="Fecha"
-                                                   Foreground="#918797"
-                                                   FontSize="11"/>
-
-                                        <DatePicker x:Name="dpFechaActividad"
-                                                    Height="36"
-                                                    Margin="0,6,0,14"/>
-
-                                        <TextBlock Text="Tiempo dedicado"
-                                                   Foreground="#918797"
-                                                   FontSize="11"/>
-
-                                        <TextBox x:Name="txtTiempoActividad"
-                                                 Style="{StaticResource Campo}"
-                                                 Margin="0,6,0,14"/>
-
-                                        <Separator Background="#E5DAEB"
-                                                   Margin="0,5,0,12"/>
-
-                                        <Button x:Name="btnNuevaActividad"
-                                                Content="Nueva actividad"
-                                                Style="{StaticResource BotonMorado}"/>
-
-                                        <Button x:Name="btnGuardarActividad"
-                                                Content="Guardar actividad"
-                                                Style="{StaticResource BotonMorado}"/>
-
-                                        <Button x:Name="btnModificarActividad"
-                                                Content="Modificar actividad"
-                                                Style="{StaticResource BotonSecundario}"/>
-
-                                        <Button x:Name="btnEliminarActividad"
-                                                Content="Eliminar actividad"
-                                                Style="{StaticResource BotonSecundario}"/>
-
-                                        <Button x:Name="btnLimpiarActividad"
-                                                Content="Limpiar campos"
-                                                Style="{StaticResource BotonSecundario}"/>
-
-                                    </StackPanel>
-                                </ScrollViewer>
-                            </Border>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-                <!-- ================================== -->
-                <!-- PERFIL -->
-                <!-- ================================== -->
-
-                <Grid x:Name="vistaPerfil"
-                      Visibility="Collapsed">
-
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel Margin="5,15,5,20">
-
-                            <TextBlock Text="Mi perfil"
-                                       Style="{StaticResource TituloSeccion}"/>
-
-                            <TextBlock Text="Información de tu cuenta y progreso"
-                                       Style="{StaticResource Subtitulo}"
-                                       Margin="0,5,0,25"/>
-
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="230"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <!-- IMAGEN Y RESUMEN -->
-                                <Border Grid.Column="0"
-                                        Background="#EEE5F5"
-                                        CornerRadius="10"
-                                        Padding="22"
-                                        Margin="0,0,15,0">
-
-                                    <StackPanel HorizontalAlignment="Center">
-
-                                        <!-- ESPACIO PARA IMAGEN -->
-                                        <Border x:Name="contenedorImagenPerfil"
-                                                Width="105"
-                                                Height="105"
-                                                Background="#F9EAF1"
-                                                CornerRadius="55"
-                                                Margin="0,10,0,18"/>
-
-                                        <TextBlock x:Name="txtNombrePerfilVista"
-                                                   FontSize="19"
-                                                   FontWeight="Bold"
-                                                   Foreground="#54376F"
-                                                   HorizontalAlignment="Center"
-                                                   TextAlignment="Center"/>
-
-                                        <TextBlock x:Name="txtEmailPerfil"
-                                                   FontSize="11"
-                                                   Foreground="#9988A8"
-                                                   HorizontalAlignment="Center"
-                                                   TextAlignment="Center"
-                                                   TextWrapping="Wrap"
-                                                   Margin="0,7,0,18"/>
-
-                                        <Border Background="#7954A1"
-                                                CornerRadius="8"
-                                                Padding="17,10">
-                                            <StackPanel>
-                                                <TextBlock Text="NIVEL ACTUAL"
-                                                           FontSize="10"
-                                                           Foreground="#E4D8EE"
-                                                           HorizontalAlignment="Center"/>
-
-                                                <TextBlock x:Name="txtNivelPerfil"
-                                                           FontSize="34"
-                                                           FontWeight="Bold"
-                                                           Foreground="White"
-                                                           HorizontalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Border>
-                                    </StackPanel>
-                                </Border>
-
-                                <!-- DATOS PERSONALES -->
-                                <Border Grid.Column="1"
-                                        Background="White"
-                                        BorderBrush="#E9E0ED"
-                                        BorderThickness="1"
-                                        CornerRadius="10"
-                                        Padding="25">
-
-                                    <StackPanel>
-
-                                        <TextBlock Text="Datos personales"
-                                                   FontSize="17"
-                                                   FontWeight="Bold"
-                                                   Foreground="#54376F"
-                                                   Margin="0,0,0,22"/>
-
-                                        <TextBlock Text="Nombre"
-                                                   Foreground="#918797"
-                                                   FontSize="12"/>
-
-                                        <TextBox x:Name="txtNombrePerfil"
-                                                 Style="{StaticResource Campo}"
-                                                 Margin="0,7,0,17"/>
-
-                                        <TextBlock Text="Correo electrónico"
-                                                   Foreground="#918797"
-                                                   FontSize="12"/>
-
-                                        <TextBox x:Name="txtCorreoPerfil"
-                                                 Style="{StaticResource Campo}"
-                                                 Margin="0,7,0,17"
-                                                 IsReadOnly="True"/>
-
-                                        <Separator Background="#E9E0ED"
-                                                   Margin="0,8,0,20"/>
-
-                                        <TextBlock Text="Progreso"
-                                                   FontSize="17"
-                                                   FontWeight="Bold"
-                                                   Foreground="#54376F"
-                                                   Margin="0,0,0,18"/>
-
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <StackPanel>
-                                                <TextBlock Text="Experiencia"
-                                                           Foreground="#918797"
-                                                           FontSize="12"/>
-
-                                                <TextBlock x:Name="txtExperienciaPerfil"
-                                                           Foreground="#7954A1"
-                                                           FontSize="24"
-                                                           FontWeight="Bold"
-                                                           Margin="0,5,0,0"/>
-                                            </StackPanel>
-
-                                            <StackPanel Grid.Column="1">
-                                                <TextBlock Text="Puntos"
-                                                           Foreground="#918797"
-                                                           FontSize="12"/>
-
-                                                <TextBlock x:Name="txtPuntosPerfil"
-                                                           Foreground="#A6537C"
-                                                           FontSize="24"
-                                                           FontWeight="Bold"
-                                                           Margin="0,5,0,0"/>
-                                            </StackPanel>
-                                        </Grid>
-
-                                        <Button x:Name="btnGuardarPerfil"
-                                                Content="Guardar cambios"
-                                                Style="{StaticResource BotonMorado}"
-                                                HorizontalAlignment="Left"
-                                                Margin="0,25,0,0"/>
-                                    </StackPanel>
-                                </Border>
-                            </Grid>
-                        </StackPanel>
-                    </ScrollViewer>
-                </Grid>
-
-            </Grid>
+            <ContentControl x:Name="ContenedorVistas"
+                            Grid.Row="1"
+                            Margin="25,20,25,15"/>
 
             <!-- ================================== -->
             <!-- BARRA INFERIOR -->
@@ -1084,6 +406,7 @@
                     BorderThickness="0,1,0,0">
 
                 <Grid Margin="15,0">
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
@@ -1103,5 +426,6 @@
             </Border>
 
         </Grid>
+
     </Grid>
 </Window>
