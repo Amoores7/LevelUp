@@ -20,5 +20,40 @@ namespace LevelUp
         {
             InitializeComponent();
         }
+
+        private void btnInicio_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMisiones_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnLogros_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnActividad_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void listaActividades_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void listaMisiones_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btnPerfil_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
