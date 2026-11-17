@@ -20,10 +20,10 @@
         <SolidColorBrush x:Key="Secundario" Color="#918797"/>
         <SolidColorBrush x:Key="Borde" Color="#E9E0ED"/>
 
-        <!-- BOTONES DE NAVEGACIÓN -->
+        <!-- BOTONES DEL MENÚ -->
         <Style x:Key="BotonMenu" TargetType="Button">
             <Setter Property="Height" Value="47"/>
-            <Setter Property="Margin" Value="0,4,0,4"/>
+            <Setter Property="Margin" Value="0,4"/>
             <Setter Property="Padding" Value="17,0"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#655575"/>
@@ -111,7 +111,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- CAMPOS -->
+        <!-- CAMPOS DE TEXTO -->
         <Style x:Key="Campo" TargetType="TextBox">
             <Setter Property="Height" Value="36"/>
             <Setter Property="Padding" Value="9,0"/>
@@ -123,7 +123,7 @@
             <Setter Property="FontSize" Value="13"/>
         </Style>
 
-        <!-- ENCABEZADOS DE SECCIÓN -->
+        <!-- TÍTULOS -->
         <Style x:Key="TituloSeccion" TargetType="TextBlock">
             <Setter Property="FontSize" Value="23"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -135,25 +135,64 @@
             <Setter Property="Foreground" Value="#918797"/>
         </Style>
 
-        <!-- TABLAS -->
-        <Style x:Key="Tabla" TargetType="DataGrid">
+        <!-- TARJETAS -->
+        <Style x:Key="Tarjeta" TargetType="Border">
             <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="#493B53"/>
             <Setter Property="BorderBrush" Value="#E9E0ED"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="RowBackground" Value="White"/>
-            <Setter Property="AlternatingRowBackground" Value="#FBF8FC"/>
-            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
-            <Setter Property="HorizontalGridLinesBrush" Value="#F0EAF3"/>
-            <Setter Property="VerticalGridLinesBrush" Value="#F0EAF3"/>
-            <Setter Property="HeadersVisibility" Value="Column"/>
-            <Setter Property="CanUserAddRows" Value="False"/>
-            <Setter Property="AutoGenerateColumns" Value="False"/>
-            <Setter Property="SelectionMode" Value="Single"/>
-            <Setter Property="SelectionUnit" Value="FullRow"/>
-            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="18"/>
+        </Style>
+
+        <!-- LISTVIEW -->
+        <Style x:Key="Lista" TargetType="ListView">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E9E0ED"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#493B53"/>
             <Setter Property="FontSize" Value="13"/>
-            <Setter Property="RowHeight" Value="39"/>
+        </Style>
+
+        <!-- TABCONTROL INTERNO -->
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#E9E0ED"/>
+            <Setter Property="Foreground" Value="#54376F"/>
+        </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="Foreground" Value="#684B83"/>
+            <Setter Property="Background" Value="#EEE5F5"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="TabBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="7,7,0,0"
+                                Padding="{TemplateBinding Padding}"
+                                Margin="2,0">
+                            <ContentPresenter ContentSource="Header"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="TabBorder"
+                                        Property="Background"
+                                        Value="#7954A1"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="TabBorder"
+                                        Property="Opacity"
+                                        Value="0.85"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
     </Window.Resources>
@@ -164,7 +203,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- ====================================== -->
         <!-- MENÚ LATERAL -->
+        <!-- ====================================== -->
+
         <Grid Grid.Column="0" Background="#EEE5F5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="105"/>
@@ -214,23 +256,28 @@
 
                 <Button x:Name="btnInicio"
                         Content="⌂    Inicio"
-                        Style="{StaticResource BotonMenu}"/>
+                        Style="{StaticResource BotonMenu}"
+                        Click="btnInicio_Click"/>
 
                 <Button x:Name="btnMisiones"
                         Content="✧    Misiones"
-                        Style="{StaticResource BotonMenu}"/>
+                        Style="{StaticResource BotonMenu}"
+                        Click="btnMisiones_Click"/>
 
                 <Button x:Name="btnLogros"
                         Content="◇    Logros"
-                        Style="{StaticResource BotonMenu}"/>
+                        Style="{StaticResource BotonMenu}"
+                        Click="btnLogros_Click"/>
 
                 <Button x:Name="btnActividad"
                         Content="◷    Actividad"
-                        Style="{StaticResource BotonMenu}"/>
+                        Style="{StaticResource BotonMenu}"
+                        Click="btnActividad_Click"/>
 
                 <Button x:Name="btnPerfil"
                         Content="○    Perfil"
-                        Style="{StaticResource BotonMenu}"/>
+                        Style="{StaticResource BotonMenu}"
+                        Click="btnPerfil_Click"/>
 
             </StackPanel>
 
@@ -244,48 +291,36 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="42"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="25"/>
                     </Grid.ColumnDefinitions>
 
+                    <!-- ESPACIO PARA IMAGEN -->
                     <Border Width="37"
                             Height="37"
-                            Background="#E9A9C5"
-                            CornerRadius="20">
-                        <TextBlock Text="●"
-                                   FontSize="19"
-                                   Foreground="White"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
-                    </Border>
+                            Background="#F9EAF1"
+                            CornerRadius="20"/>
 
                     <StackPanel Grid.Column="1"
                                 VerticalAlignment="Center"
                                 Margin="9,0,0,0">
                         <TextBlock x:Name="txtNombreMenu"
-                                   Text="{Binding Usuario.Nombre}"
                                    FontWeight="SemiBold"
                                    Foreground="#54376F"
                                    FontSize="12"/>
-                        <TextBlock Text="{Binding Usuario.Email}"
+
+                        <TextBlock x:Name="txtEmailMenu"
                                    Foreground="#9988A8"
                                    FontSize="10"
                                    TextTrimming="CharacterEllipsis"/>
                     </StackPanel>
-
-                    <TextBlock Grid.Column="2"
-                               Text="⋮"
-                               FontSize="21"
-                               Foreground="#7954A1"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center"/>
-
                 </Grid>
             </Border>
-
         </Grid>
 
+        <!-- ====================================== -->
         <!-- CONTENIDO PRINCIPAL -->
-        <Grid Grid.Column="1" Margin="0">
+        <!-- ====================================== -->
+
+        <Grid Grid.Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
@@ -306,42 +341,43 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="LevelUp"
+                        <TextBlock x:Name="txtTituloPagina"
+                                   Text="Inicio"
                                    FontSize="17"
                                    FontWeight="Bold"
                                    Foreground="#54376F"/>
+
                         <TextBlock Text="Panel de jugador"
                                    FontSize="11"
                                    Foreground="#A399A9"/>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1"
-                                Orientation="Horizontal"
-                                VerticalAlignment="Center">
+                    <Border Grid.Column="1"
+                            Background="#F9EAF1"
+                            CornerRadius="15"
+                            Padding="13,7"
+                            VerticalAlignment="Center">
 
-                        <Border Background="#F9EAF1"
-                                CornerRadius="15"
-                                Padding="13,7">
-                            <TextBlock Text="{Binding Usuario.Nivel, StringFormat=Nivel {0}}"
-                                       Foreground="#A6537C"
-                                       FontSize="12"
-                                       FontWeight="SemiBold"/>
-                        </Border>
-
-                    </StackPanel>
+                        <TextBlock x:Name="txtNivelSuperior"
+                                   Foreground="#A6537C"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"/>
+                    </Border>
                 </Grid>
             </Border>
 
-            <!-- TABCONTROL -->
-            <TabControl x:Name="tabPrincipal"
-                        Grid.Row="1"
-                        Margin="25,20,25,15"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        SelectedIndex="0">
+            <!-- ================================== -->
+            <!-- CONTENEDOR DE LAS VISTAS -->
+            <!-- ================================== -->
 
-                <!-- ================= INICIO ================= -->
-                <TabItem Header="Inicio">
+            <Grid Grid.Row="1" Margin="25,20,25,15">
+
+                <!-- ================================== -->
+                <!-- INICIO -->
+                <!-- ================================== -->
+
+                <Grid x:Name="vistaInicio"
+                      Visibility="Visible">
 
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="5,15,5,20">
@@ -353,7 +389,7 @@
                                        Style="{StaticResource Subtitulo}"
                                        Margin="0,5,0,25"/>
 
-                            <!-- PROGRESO DEL JUGADOR -->
+                            <!-- EXPERIENCIA Y NIVEL -->
                             <Border Background="#7954A1"
                                     CornerRadius="13"
                                     Padding="25"
@@ -366,26 +402,28 @@
                                     </Grid.ColumnDefinitions>
 
                                     <StackPanel VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Usuario.Nombre}"
+
+                                        <TextBlock x:Name="txtNombreInicio"
                                                    FontSize="24"
                                                    FontWeight="Bold"
                                                    Foreground="White"/>
 
-                                        <TextBlock Text="{Binding Usuario.Email}"
+                                        <TextBlock x:Name="txtEmailInicio"
                                                    Foreground="#E4D8EE"
                                                    FontSize="12"
                                                    Margin="0,5,0,18"/>
 
-                                        <TextBlock Text="{Binding Usuario.Experiencia, StringFormat=Experiencia: {0}}"
+                                        <TextBlock x:Name="txtExperiencia"
                                                    Foreground="White"
                                                    FontSize="13"/>
 
-                                        <ProgressBar Height="9"
+                                        <ProgressBar x:Name="barraExperiencia"
+                                                     Height="9"
                                                      Width="250"
                                                      HorizontalAlignment="Left"
                                                      Margin="0,10,0,0"
-                                                     Maximum="{Binding ExperienciaNecesaria}"
-                                                     Value="{Binding Usuario.Experiencia}"
+                                                     Maximum="100"
+                                                     Value="0"
                                                      Background="#A98BC4"
                                                      Foreground="#E9A9C5"/>
                                     </StackPanel>
@@ -399,12 +437,11 @@
                                                    Foreground="#E4D8EE"
                                                    HorizontalAlignment="Center"/>
 
-                                        <TextBlock Text="{Binding Usuario.Nivel}"
+                                        <TextBlock x:Name="txtNivel"
                                                    FontSize="65"
                                                    FontWeight="Bold"
                                                    Foreground="White"
                                                    HorizontalAlignment="Center"/>
-
                                     </StackPanel>
                                 </Grid>
                             </Border>
@@ -421,14 +458,16 @@
                                         Background="White"
                                         BorderBrush="#E9E0ED"
                                         BorderThickness="1"
+                                        CornerRadius="10"
                                         Padding="18"
                                         Margin="0,0,12,0">
                                     <StackPanel>
-                                        <TextBlock Text="PUNTOS"
+                                        <TextBlock Text="EXPERIENCIA TOTAL"
                                                    Foreground="#A18DAF"
                                                    FontSize="10"
                                                    FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding Usuario.Puntos}"
+
+                                        <TextBlock x:Name="txtTotalXP"
                                                    FontSize="29"
                                                    FontWeight="Bold"
                                                    Foreground="#7954A1"
@@ -438,6 +477,7 @@
 
                                 <Border Grid.Column="1"
                                         Background="#F9EAF1"
+                                        CornerRadius="10"
                                         Padding="18"
                                         Margin="6,0">
                                     <StackPanel>
@@ -445,7 +485,8 @@
                                                    Foreground="#B16D8D"
                                                    FontSize="10"
                                                    FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding TotalMisionesCompletadas}"
+
+                                        <TextBlock x:Name="txtTotalMisiones"
                                                    FontSize="29"
                                                    FontWeight="Bold"
                                                    Foreground="#A6537C"
@@ -455,6 +496,7 @@
 
                                 <Border Grid.Column="2"
                                         Background="#EEE5F5"
+                                        CornerRadius="10"
                                         Padding="18"
                                         Margin="12,0,0,0">
                                     <StackPanel>
@@ -462,7 +504,8 @@
                                                    Foreground="#9479A7"
                                                    FontSize="10"
                                                    FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding TotalLogros}"
+
+                                        <TextBlock x:Name="txtTotalLogros"
                                                    FontSize="29"
                                                    FontWeight="Bold"
                                                    Foreground="#7954A1"
@@ -471,436 +514,411 @@
                                 </Border>
                             </Grid>
 
-                            <!-- ÚLTIMAS MISIONES -->
-                            <TextBlock Text="Misiones recientes"
+                            <!-- INFORMACIÓN RELEVANTE -->
+                            <TextBlock Text="Información relevante"
                                        FontSize="17"
                                        FontWeight="Bold"
                                        Foreground="#493B53"
                                        Margin="0,0,0,12"/>
 
-                            <DataGrid Style="{StaticResource Tabla}"
-                                      ItemsSource="{Binding MisionesRecientes}"
-                                      MaxHeight="220">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Misión"
-                                                        Binding="{Binding Titulo}"
-                                                        Width="*"/>
-                                    <DataGridTextColumn Header="Categoría"
-                                                        Binding="{Binding Categoria}"
-                                                        Width="150"/>
-                                    <DataGridTextColumn Header="Experiencia"
-                                                        Binding="{Binding Experiencia}"
-                                                        Width="120"/>
-                                    <DataGridTextColumn Header="Estado"
-                                                        Binding="{Binding Estado}"
-                                                        Width="130"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
+                            <Border Style="{StaticResource Tarjeta}"
+                                    MinHeight="150">
+                                <Grid x:Name="panelInformacionRelevante"/>
+                            </Border>
 
                         </StackPanel>
                     </ScrollViewer>
-                </TabItem>
+                </Grid>
 
-                <!-- ================= MISIONES ================= -->
-                <TabItem Header="Misiones">
+                <!-- ================================== -->
+                <!-- MISIONES -->
+                <!-- ================================== -->
 
-                    <Grid Margin="5,15,5,5">
+                <Grid x:Name="vistaMisiones"
+                      Visibility="Collapsed">
+
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Row="0">
                             <TextBlock Text="Misiones"
                                        Style="{StaticResource TituloSeccion}"/>
+
                             <TextBlock Text="Gestiona tus objetivos y registra tu progreso"
                                        Style="{StaticResource Subtitulo}"
                                        Margin="0,5,0,20"/>
                         </StackPanel>
 
-                        <!-- FILTROS -->
-                        <Grid Grid.Row="1" Margin="0,0,0,15">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="260"/>
-                                <ColumnDefinition Width="190"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBox x:Name="txtBuscarMision"
-                                     Style="{StaticResource Campo}"
-                                     ToolTip="Buscar misión"
-                                     VerticalAlignment="Center"/>
-
-                            <ComboBox x:Name="cmbFiltroEstado"
-                                      Grid.Column="1"
-                                      Height="36"
-                                      Margin="10,0"
-                                      VerticalContentAlignment="Center"
-                                      Background="#FBF9FC"
-                                      BorderBrush="#E5DAEB"
-                                      Padding="7"
-                                      ToolTip="Filtrar por estado"/>
-
-                            <ComboBox x:Name="cmbFiltroCategoria"
-                                      Grid.Column="2"
-                                      Height="36"
-                                      Margin="5,0,10,0"
-                                      VerticalContentAlignment="Center"
-                                      Background="#FBF9FC"
-                                      BorderBrush="#E5DAEB"
-                                      Padding="7"
-                                      ToolTip="Filtrar por categoría"/>
-
-                            <Button x:Name="btnActualizarMisiones"
-                                    Grid.Column="3"
-                                    Content="↻  Actualizar"
-                                    Style="{StaticResource BotonSecundario}"/>
-                        </Grid>
-
-                        <!-- LISTADO Y DETALLE -->
-                        <Grid Grid.Row="2">
+                        <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="12"/>
+                                <ColumnDefinition Width="15"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Border Grid.Column="0"
-                                    Background="White"
-                                    BorderBrush="#E9E0ED"
-                                    BorderThickness="1">
+                            <!-- LISTADO -->
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-                                <DataGrid x:Name="dgMisiones"
-                                          Style="{StaticResource Tabla}"
-                                          ItemsSource="{Binding Misiones}"
-                                          SelectedItem="{Binding MisionSeleccionada}">
+                                <Grid Grid.Row="0" Margin="0,0,0,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="160"/>
+                                    </Grid.ColumnDefinitions>
 
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Título"
-                                                            Binding="{Binding Titulo}"
-                                                            Width="*"/>
+                                    <TextBox x:Name="txtBuscarMision"
+                                             Style="{StaticResource Campo}"
+                                             ToolTip="Buscar misión"/>
 
-                                        <DataGridTextColumn Header="Categoría"
-                                                            Binding="{Binding Categoria}"
-                                                            Width="115"/>
+                                    <ComboBox x:Name="cmbFiltroEstado"
+                                              Grid.Column="1"
+                                              Height="36"
+                                              Margin="10,0,0,0"
+                                              Padding="7"
+                                              Background="White"
+                                              BorderBrush="#E5DAEB"
+                                              ToolTip="Filtrar por estado"/>
+                                </Grid>
 
-                                        <DataGridTextColumn Header="Experiencia"
-                                                            Binding="{Binding Experiencia}"
-                                                            Width="105"/>
+                                <ListView x:Name="listaMisiones"
+                                          Grid.Row="1"
+                                          Style="{StaticResource Lista}"
+                                          SelectionChanged="listaMisiones_SelectionChanged">
 
-                                        <DataGridTextColumn Header="Fecha"
-                                                            Binding="{Binding Fecha}"
-                                                            Width="115"/>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Título"
+                                                            DisplayMemberBinding="{Binding Titulo}"
+                                                            Width="180"/>
 
-                                        <DataGridTextColumn Header="Estado"
-                                                            Binding="{Binding Estado}"
+                                            <GridViewColumn Header="Categoría"
+                                                            DisplayMemberBinding="{Binding Categoria}"
                                                             Width="110"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </Border>
 
-                            <!-- DETALLE -->
+                                            <GridViewColumn Header="XP"
+                                                            DisplayMemberBinding="{Binding Experiencia}"
+                                                            Width="65"/>
+
+                                            <GridViewColumn Header="Estado"
+                                                            DisplayMemberBinding="{Binding Estado}"
+                                                            Width="100"/>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+
+                                <TextBlock x:Name="txtTotalMisionesListado"
+                                           Grid.Row="2"
+                                           Foreground="#918797"
+                                           FontSize="12"
+                                           Margin="2,10,0,0"/>
+                            </Grid>
+
+                            <!-- PANEL DE GESTIÓN -->
                             <Border Grid.Column="2"
                                     Background="#F9F5FB"
                                     BorderBrush="#E9E0ED"
                                     BorderThickness="1"
-                                    Padding="18">
+                                    CornerRadius="10"
+                                    Padding="15">
 
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                    <StackPanel>
+                                <TabControl>
 
-                                        <TextBlock Text="Detalle de misión"
-                                                   FontSize="17"
-                                                   FontWeight="Bold"
-                                                   Foreground="#54376F"
-                                                   Margin="0,0,0,18"/>
+                                    <TabItem Header="Detalles">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                            <StackPanel Margin="8">
 
-                                        <TextBlock Text="Título"
-                                                   FontSize="11"
-                                                   FontWeight="SemiBold"
-                                                   Foreground="#918797"/>
+                                                <TextBlock Text="Título"
+                                                           FontSize="11"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="#918797"/>
 
-                                        <TextBox x:Name="txtTituloMision"
-                                                 Style="{StaticResource Campo}"
-                                                 Margin="0,6,0,14"
-                                                 Text="{Binding MisionSeleccionada.Titulo, UpdateSourceTrigger=PropertyChanged}"/>
+                                                <TextBox x:Name="txtTituloMision"
+                                                         Style="{StaticResource Campo}"
+                                                         Margin="0,6,0,14"/>
 
-                                        <TextBlock Text="Descripción"
-                                                   FontSize="11"
-                                                   FontWeight="SemiBold"
-                                                   Foreground="#918797"/>
+                                                <TextBlock Text="Descripción"
+                                                           FontSize="11"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="#918797"/>
 
-                                        <TextBox x:Name="txtDescripcionMision"
-                                                 Height="80"
-                                                 Padding="9"
-                                                 TextWrapping="Wrap"
-                                                 AcceptsReturn="True"
-                                                 VerticalScrollBarVisibility="Auto"
-                                                 Background="#FBF9FC"
-                                                 BorderBrush="#E5DAEB"
-                                                 BorderThickness="1"
-                                                 Margin="0,6,0,14"
-                                                 Text="{Binding MisionSeleccionada.Descripcion, UpdateSourceTrigger=PropertyChanged}"/>
+                                                <TextBox x:Name="txtDescripcionMision"
+                                                         Height="80"
+                                                         Padding="9"
+                                                         TextWrapping="Wrap"
+                                                         AcceptsReturn="True"
+                                                         VerticalScrollBarVisibility="Auto"
+                                                         Background="#FBF9FC"
+                                                         BorderBrush="#E5DAEB"
+                                                         BorderThickness="1"
+                                                         Margin="0,6,0,14"/>
 
-                                        <TextBlock Text="Categoría"
-                                                   FontSize="11"
-                                                   FontWeight="SemiBold"
-                                                   Foreground="#918797"/>
+                                                <TextBlock Text="Categoría"
+                                                           FontSize="11"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="#918797"/>
 
-                                        <ComboBox x:Name="cmbCategoriaMision"
-                                                  Height="36"
-                                                  Margin="0,6,0,14"
-                                                  Padding="7"
-                                                  Background="White"
-                                                  BorderBrush="#E5DAEB"
-                                                  SelectedItem="{Binding MisionSeleccionada.Categoria}"/>
+                                                <ComboBox x:Name="cmbCategoriaMision"
+                                                          Height="36"
+                                                          Margin="0,6,0,14"
+                                                          Padding="7"
+                                                          Background="White"
+                                                          BorderBrush="#E5DAEB"/>
 
-                                        <TextBlock Text="Experiencia"
-                                                   FontSize="11"
-                                                   FontWeight="SemiBold"
-                                                   Foreground="#918797"/>
+                                                <TextBlock Text="Experiencia"
+                                                           FontSize="11"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="#918797"/>
 
-                                        <TextBox x:Name="txtExperienciaMision"
-                                                 Style="{StaticResource Campo}"
-                                                 Margin="0,6,0,14"
-                                                 Text="{Binding MisionSeleccionada.Experiencia, UpdateSourceTrigger=PropertyChanged}"/>
+                                                <TextBox x:Name="txtExperienciaMision"
+                                                         Style="{StaticResource Campo}"
+                                                         Margin="0,6,0,14"/>
 
-                                        <TextBlock Text="Fecha"
-                                                   FontSize="11"
-                                                   FontWeight="SemiBold"
-                                                   Foreground="#918797"/>
+                                                <TextBlock Text="Fecha límite"
+                                                           FontSize="11"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="#918797"/>
 
-                                        <DatePicker x:Name="dpFechaMision"
-                                                    Height="36"
-                                                    Margin="0,6,0,14"
-                                                    SelectedDate="{Binding MisionSeleccionada.Fecha}"/>
+                                                <DatePicker x:Name="dpFechaMision"
+                                                            Height="36"
+                                                            Margin="0,6,0,14"/>
 
-                                        <TextBlock Text="Estado"
-                                                   FontSize="11"
-                                                   FontWeight="SemiBold"
-                                                   Foreground="#918797"/>
+                                                <TextBlock Text="Estado"
+                                                           FontSize="11"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="#918797"/>
 
-                                        <ComboBox x:Name="cmbEstadoMision"
-                                                  Height="36"
-                                                  Margin="0,6,0,15"
-                                                  Padding="7"
-                                                  Background="White"
-                                                  BorderBrush="#E5DAEB"
-                                                  SelectedItem="{Binding MisionSeleccionada.Estado}"/>
+                                                <ComboBox x:Name="cmbEstadoMision"
+                                                          Height="36"
+                                                          Margin="0,6,0,14"
+                                                          Padding="7"
+                                                          Background="White"
+                                                          BorderBrush="#E5DAEB"/>
 
-                                        <Separator Margin="0,5,0,12"
-                                                   Background="#E5DAEB"/>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </TabItem>
 
-                                        <WrapPanel HorizontalAlignment="Center">
+                                    <TabItem Header="Gestión">
+                                        <StackPanel Margin="8">
+
                                             <Button x:Name="btnNuevoMision"
-                                                    Content="+ Nuevo"
+                                                    Content="Nueva misión"
                                                     Style="{StaticResource BotonMorado}"/>
 
                                             <Button x:Name="btnGuardarMision"
-                                                    Content="Guardar"
+                                                    Content="Guardar misión"
                                                     Style="{StaticResource BotonMorado}"/>
 
                                             <Button x:Name="btnModificarMision"
-                                                    Content="Modificar"
+                                                    Content="Modificar misión"
                                                     Style="{StaticResource BotonSecundario}"/>
 
                                             <Button x:Name="btnEliminarMision"
-                                                    Content="Eliminar"
+                                                    Content="Eliminar misión"
                                                     Style="{StaticResource BotonSecundario}"/>
 
                                             <Button x:Name="btnLimpiarMision"
-                                                    Content="Limpiar"
+                                                    Content="Limpiar campos"
                                                     Style="{StaticResource BotonSecundario}"/>
-                                        </WrapPanel>
 
-                                    </StackPanel>
-                                </ScrollViewer>
+                                        </StackPanel>
+                                    </TabItem>
+
+                                </TabControl>
                             </Border>
                         </Grid>
-
-                        <!-- TOTAL -->
-                        <TextBlock Grid.Row="3"
-                                   Text="{Binding TotalMisiones, StringFormat=Total de misiones: {0}}"
-                                   Foreground="#918797"
-                                   FontSize="12"
-                                   Margin="2,12,0,0"/>
-
                     </Grid>
-                </TabItem>
+                </Grid>
 
-                <!-- ================= LOGROS ================= -->
-                <TabItem Header="Logros">
+                <!-- ================================== -->
+                <!-- LOGROS -->
+                <!-- ================================== -->
 
-                    <Grid Margin="5,15,5,5">
+                <Grid x:Name="vistaLogros"
+                      Visibility="Collapsed">
+
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Row="0">
                             <TextBlock Text="Logros"
                                        Style="{StaticResource TituloSeccion}"/>
-                            <TextBlock Text="Consulta los logros de tu progreso"
+
+                            <TextBlock Text="Consulta tus logros y recompensas"
                                        Style="{StaticResource Subtitulo}"
                                        Margin="0,5,0,20"/>
                         </StackPanel>
 
-                        <Grid Grid.Row="1" Margin="0,0,0,15">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBox x:Name="txtBuscarLogro"
-                                     Style="{StaticResource Campo}"
-                                     ToolTip="Buscar logro"/>
-
-                            <ComboBox x:Name="cmbFiltroLogros"
-                                      Grid.Column="1"
-                                      Height="36"
-                                      Margin="10,0"
-                                      Padding="7"
-                                      Background="White"
-                                      BorderBrush="#E5DAEB"
-                                      ToolTip="Filtrar logros"/>
-
-                            <Button x:Name="btnActualizarLogros"
-                                    Grid.Column="2"
-                                    Content="↻  Actualizar"
-                                    Style="{StaticResource BotonSecundario}"/>
-                        </Grid>
-
-                        <Border Grid.Row="2"
-                                Background="White"
-                                BorderBrush="#E9E0ED"
-                                BorderThickness="1">
-
-                            <DataGrid x:Name="dgLogros"
-                                      Style="{StaticResource Tabla}"
-                                      ItemsSource="{Binding Logros}"
-                                      SelectedItem="{Binding LogroSeleccionado}">
-
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Logro"
-                                                        Binding="{Binding Titulo}"
-                                                        Width="*"/>
-
-                                    <DataGridTextColumn Header="Descripción"
-                                                        Binding="{Binding Descripcion}"
-                                                        Width="2*"/>
-
-                                    <DataGridTextColumn Header="Experiencia"
-                                                        Binding="{Binding Experiencia}"
-                                                        Width="130"/>
-
-                                    <DataGridTextColumn Header="Estado"
-                                                        Binding="{Binding Estado}"
-                                                        Width="140"/>
-
-                                    <DataGridTextColumn Header="Fecha"
-                                                        Binding="{Binding Fecha}"
-                                                        Width="140"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
+                        <Border Grid.Row="1"
+                                Style="{StaticResource Tarjeta}">
+                            <Grid x:Name="panelListaLogros"/>
                         </Border>
-
-                        <TextBlock Grid.Row="3"
-                                   Text="{Binding TotalLogros, StringFormat=Total de logros: {0}}"
-                                   Foreground="#918797"
-                                   FontSize="12"
-                                   Margin="2,12,0,0"/>
-
                     </Grid>
-                </TabItem>
+                </Grid>
 
-                <!-- ================= ACTIVIDAD ================= -->
-                <TabItem Header="Actividad">
+                <!-- ================================== -->
+                <!-- ACTIVIDAD -->
+                <!-- ================================== -->
 
-                    <Grid Margin="5,15,5,5">
+                <Grid x:Name="vistaActividad"
+                      Visibility="Collapsed">
+
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Row="0">
                             <TextBlock Text="Actividad"
                                        Style="{StaticResource TituloSeccion}"/>
-                            <TextBlock Text="Historial de tus acciones y progresos"
+
+                            <TextBlock Text="Registra y administra el tiempo dedicado a tus misiones"
                                        Style="{StaticResource Subtitulo}"
                                        Margin="0,5,0,20"/>
                         </StackPanel>
 
-                        <Grid Grid.Row="1" Margin="0,0,0,15">
+                        <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="15"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="210"/>
-                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBox x:Name="txtBuscarActividad"
-                                     Style="{StaticResource Campo}"
-                                     ToolTip="Buscar actividad"/>
+                            <!-- LISTADO DE ACTIVIDADES -->
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
-                            <DatePicker x:Name="dpFiltroActividad"
-                                        Grid.Column="1"
-                                        Height="36"
-                                        Margin="10,0"
-                                        SelectedDateFormat="Short"/>
+                                <TextBox x:Name="txtBuscarActividad"
+                                         Grid.Row="0"
+                                         Style="{StaticResource Campo}"
+                                         ToolTip="Buscar actividad"
+                                         Margin="0,0,0,12"/>
 
-                            <Button x:Name="btnActualizarActividad"
-                                    Grid.Column="2"
-                                    Content="↻  Actualizar"
-                                    Style="{StaticResource BotonSecundario}"/>
+                                <ListView x:Name="listaActividades"
+                                          Grid.Row="1"
+                                          Style="{StaticResource Lista}"
+                                          SelectionChanged="listaActividades_SelectionChanged">
+
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Actividad"
+                                                            DisplayMemberBinding="{Binding Descripcion}"
+                                                            Width="190"/>
+
+                                            <GridViewColumn Header="Misión"
+                                                            DisplayMemberBinding="{Binding Mision}"
+                                                            Width="130"/>
+
+                                            <GridViewColumn Header="Tiempo"
+                                                            DisplayMemberBinding="{Binding Tiempo}"
+                                                            Width="90"/>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+
+                            <!-- FORMULARIO DE ACTIVIDAD -->
+                            <Border Grid.Column="2"
+                                    Background="#F9F5FB"
+                                    BorderBrush="#E9E0ED"
+                                    BorderThickness="1"
+                                    CornerRadius="10"
+                                    Padding="18">
+
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel>
+
+                                        <TextBlock Text="Gestionar actividad"
+                                                   FontSize="17"
+                                                   FontWeight="Bold"
+                                                   Foreground="#54376F"
+                                                   Margin="0,0,0,18"/>
+
+                                        <TextBlock Text="Descripción"
+                                                   Foreground="#918797"
+                                                   FontSize="11"/>
+
+                                        <TextBox x:Name="txtDescripcionActividad"
+                                                 Style="{StaticResource Campo}"
+                                                 Margin="0,6,0,14"/>
+
+                                        <TextBlock Text="Misión relacionada"
+                                                   Foreground="#918797"
+                                                   FontSize="11"/>
+
+                                        <ComboBox x:Name="cmbMisionActividad"
+                                                  Height="36"
+                                                  Margin="0,6,0,14"
+                                                  Padding="7"
+                                                  Background="White"
+                                                  BorderBrush="#E5DAEB"/>
+
+                                        <TextBlock Text="Fecha"
+                                                   Foreground="#918797"
+                                                   FontSize="11"/>
+
+                                        <DatePicker x:Name="dpFechaActividad"
+                                                    Height="36"
+                                                    Margin="0,6,0,14"/>
+
+                                        <TextBlock Text="Tiempo dedicado"
+                                                   Foreground="#918797"
+                                                   FontSize="11"/>
+
+                                        <TextBox x:Name="txtTiempoActividad"
+                                                 Style="{StaticResource Campo}"
+                                                 Margin="0,6,0,14"/>
+
+                                        <Separator Background="#E5DAEB"
+                                                   Margin="0,5,0,12"/>
+
+                                        <Button x:Name="btnNuevaActividad"
+                                                Content="Nueva actividad"
+                                                Style="{StaticResource BotonMorado}"/>
+
+                                        <Button x:Name="btnGuardarActividad"
+                                                Content="Guardar actividad"
+                                                Style="{StaticResource BotonMorado}"/>
+
+                                        <Button x:Name="btnModificarActividad"
+                                                Content="Modificar actividad"
+                                                Style="{StaticResource BotonSecundario}"/>
+
+                                        <Button x:Name="btnEliminarActividad"
+                                                Content="Eliminar actividad"
+                                                Style="{StaticResource BotonSecundario}"/>
+
+                                        <Button x:Name="btnLimpiarActividad"
+                                                Content="Limpiar campos"
+                                                Style="{StaticResource BotonSecundario}"/>
+
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Border>
                         </Grid>
-
-                        <Border Grid.Row="2"
-                                Background="White"
-                                BorderBrush="#E9E0ED"
-                                BorderThickness="1">
-
-                            <DataGrid x:Name="dgActividad"
-                                      Style="{StaticResource Tabla}"
-                                      ItemsSource="{Binding Actividades}">
-
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Fecha"
-                                                        Binding="{Binding Fecha}"
-                                                        Width="180"/>
-
-                                    <DataGridTextColumn Header="Actividad"
-                                                        Binding="{Binding Descripcion}"
-                                                        Width="*"/>
-
-                                    <DataGridTextColumn Header="Tipo"
-                                                        Binding="{Binding Tipo}"
-                                                        Width="160"/>
-
-                                    <DataGridTextColumn Header="Experiencia"
-                                                        Binding="{Binding Experiencia}"
-                                                        Width="130"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Border>
-
-                        <TextBlock Grid.Row="3"
-                                   Text="{Binding TotalActividades, StringFormat=Total de actividades: {0}}"
-                                   Foreground="#918797"
-                                   FontSize="12"
-                                   Margin="2,12,0,0"/>
-
                     </Grid>
-                </TabItem>
+                </Grid>
 
-                <!-- ================= PERFIL ================= -->
-                <TabItem Header="Perfil">
+                <!-- ================================== -->
+                <!-- PERFIL -->
+                <!-- ================================== -->
+
+                <Grid x:Name="vistaPerfil"
+                      Visibility="Collapsed">
 
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="5,15,5,20">
@@ -918,34 +936,31 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!-- PERFIL IZQUIERDO -->
+                                <!-- IMAGEN Y RESUMEN -->
                                 <Border Grid.Column="0"
                                         Background="#EEE5F5"
+                                        CornerRadius="10"
                                         Padding="22"
                                         Margin="0,0,15,0">
 
                                     <StackPanel HorizontalAlignment="Center">
 
-                                        <Border Width="105"
+                                        <!-- ESPACIO PARA IMAGEN -->
+                                        <Border x:Name="contenedorImagenPerfil"
+                                                Width="105"
                                                 Height="105"
-                                                Background="#E9A9C5"
+                                                Background="#F9EAF1"
                                                 CornerRadius="55"
-                                                Margin="0,10,0,18">
-                                            <TextBlock Text="●"
-                                                       FontSize="48"
-                                                       Foreground="White"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"/>
-                                        </Border>
+                                                Margin="0,10,0,18"/>
 
-                                        <TextBlock Text="{Binding Usuario.Nombre}"
+                                        <TextBlock x:Name="txtNombrePerfilVista"
                                                    FontSize="19"
                                                    FontWeight="Bold"
                                                    Foreground="#54376F"
                                                    HorizontalAlignment="Center"
                                                    TextAlignment="Center"/>
 
-                                        <TextBlock Text="{Binding Usuario.Email}"
+                                        <TextBlock x:Name="txtEmailPerfil"
                                                    FontSize="11"
                                                    Foreground="#9988A8"
                                                    HorizontalAlignment="Center"
@@ -961,22 +976,23 @@
                                                            FontSize="10"
                                                            Foreground="#E4D8EE"
                                                            HorizontalAlignment="Center"/>
-                                                <TextBlock Text="{Binding Usuario.Nivel}"
+
+                                                <TextBlock x:Name="txtNivelPerfil"
                                                            FontSize="34"
                                                            FontWeight="Bold"
                                                            Foreground="White"
                                                            HorizontalAlignment="Center"/>
                                             </StackPanel>
                                         </Border>
-
                                     </StackPanel>
                                 </Border>
 
-                                <!-- INFORMACIÓN -->
+                                <!-- DATOS PERSONALES -->
                                 <Border Grid.Column="1"
                                         Background="White"
                                         BorderBrush="#E9E0ED"
                                         BorderThickness="1"
+                                        CornerRadius="10"
                                         Padding="25">
 
                                     <StackPanel>
@@ -993,8 +1009,7 @@
 
                                         <TextBox x:Name="txtNombrePerfil"
                                                  Style="{StaticResource Campo}"
-                                                 Margin="0,7,0,17"
-                                                 Text="{Binding Usuario.Nombre, UpdateSourceTrigger=PropertyChanged}"/>
+                                                 Margin="0,7,0,17"/>
 
                                         <TextBlock Text="Correo electrónico"
                                                    Foreground="#918797"
@@ -1003,8 +1018,7 @@
                                         <TextBox x:Name="txtCorreoPerfil"
                                                  Style="{StaticResource Campo}"
                                                  Margin="0,7,0,17"
-                                                 IsReadOnly="True"
-                                                 Text="{Binding Usuario.Email}"/>
+                                                 IsReadOnly="True"/>
 
                                         <Separator Background="#E9E0ED"
                                                    Margin="0,8,0,20"/>
@@ -1025,7 +1039,8 @@
                                                 <TextBlock Text="Experiencia"
                                                            Foreground="#918797"
                                                            FontSize="12"/>
-                                                <TextBlock Text="{Binding Usuario.Experiencia}"
+
+                                                <TextBlock x:Name="txtExperienciaPerfil"
                                                            Foreground="#7954A1"
                                                            FontSize="24"
                                                            FontWeight="Bold"
@@ -1036,7 +1051,8 @@
                                                 <TextBlock Text="Puntos"
                                                            Foreground="#918797"
                                                            FontSize="12"/>
-                                                <TextBlock Text="{Binding Usuario.Puntos}"
+
+                                                <TextBlock x:Name="txtPuntosPerfil"
                                                            Foreground="#A6537C"
                                                            FontSize="24"
                                                            FontWeight="Bold"
@@ -1049,17 +1065,19 @@
                                                 Style="{StaticResource BotonMorado}"
                                                 HorizontalAlignment="Left"
                                                 Margin="0,25,0,0"/>
-
                                     </StackPanel>
                                 </Border>
                             </Grid>
                         </StackPanel>
                     </ScrollViewer>
-                </TabItem>
+                </Grid>
 
-            </TabControl>
+            </Grid>
 
-            <!-- ESTADO DE LA APLICACIÓN -->
+            <!-- ================================== -->
+            <!-- BARRA INFERIOR -->
+            <!-- ================================== -->
+
             <Border Grid.Row="2"
                     Background="White"
                     BorderBrush="#E9E0ED"
@@ -1072,7 +1090,6 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock x:Name="txtEstado"
-                               Text="{Binding EstadoAplicacion}"
                                FontSize="10"
                                Foreground="#918797"
                                VerticalAlignment="Center"/>
