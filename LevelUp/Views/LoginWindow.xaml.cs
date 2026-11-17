@@ -22,6 +22,12 @@ namespace LevelUp.Views
             InitializeComponent();
         }
 
-        
+        private async Task btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            string correoIntroducido = txtCorreo.Text;
+
+            var usuario = await FirebaseAuth.DefaultInstance.SignInWithEmailAndPasswordAsync(
+                txtCorreo.Text, txtPassword.Password);
+        }
     }
 }
