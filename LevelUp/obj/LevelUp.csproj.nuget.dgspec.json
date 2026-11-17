@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Amores\\source\\repos\\LevelUp\\LevelUp\\LevelUp.csproj": {}
+    "C:\\Users\\Alumno\\source\\repos\\LevelUp\\LevelUp\\LevelUp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Amores\\source\\repos\\LevelUp\\LevelUp\\LevelUp.csproj": {
+    "C:\\Users\\Alumno\\source\\repos\\LevelUp\\LevelUp\\LevelUp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Amores\\source\\repos\\LevelUp\\LevelUp\\LevelUp.csproj",
+        "projectUniqueName": "C:\\Users\\Alumno\\source\\repos\\LevelUp\\LevelUp\\LevelUp.csproj",
         "projectName": "LevelUp",
-        "projectPath": "C:\\Users\\Amores\\source\\repos\\LevelUp\\LevelUp\\LevelUp.csproj",
-        "packagesPath": "C:\\Users\\Amores\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Amores\\source\\repos\\LevelUp\\LevelUp\\obj\\",
+        "projectPath": "C:\\Users\\Alumno\\source\\repos\\LevelUp\\LevelUp\\LevelUp.csproj",
+        "packagesPath": "C:\\Users\\Alumno\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alumno\\source\\repos\\LevelUp\\LevelUp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Amores\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alumno\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
