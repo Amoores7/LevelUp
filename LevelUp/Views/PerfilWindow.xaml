@@ -1,12 +1,348 @@
 ﻿<Window x:Class="LevelUp.Views.PerfilWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LevelUp.Views"
-        mc:Ignorable="d"
-        Title="Perfil de usuario" Height="450" Width="800">
-    <Grid>
-        
+        Title="Perfil de usuario"
+        Height="650"
+        Width="1000"
+        MinWidth="750"
+        MinHeight="550"
+        WindowStartupLocation="CenterOwner"
+        Background="#F8F5FA">
+
+    <!--
+        ESTILOS DE LA VENTANA
+
+        Se utilizan los mismos colores y características visuales
+        que en MainWindow.xaml para mantener la identidad de LevelUp.
+
+        Estos estilos son locales a PerfilWindow, por lo que no
+        modificamos los recursos de la ventana principal.
+    -->
+    <Window.Resources>
+
+        <!-- Estilo común para los campos de datos personales -->
+        <Style x:Key="Campo" TargetType="TextBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="Background" Value="#FBF9FC"/>
+            <Setter Property="BorderBrush" Value="#E5DAEB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#382D43"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <!--
+            Estilo del botón Guardar.
+            MinWidth y Padding evitan que el texto quede pegado
+            a los bordes o aparezca cortado.
+        -->
+        <Style x:Key="BotonMorado" TargetType="Button">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="MinWidth" Value="165"/>
+            <Setter Property="Padding" Value="20,0"/>
+            <Setter Property="Background" Value="#7954A1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+            <!--
+                ControlTemplate personaliza la forma del botón.
+                ContentPresenter muestra el texto respetando
+                la alineación y el espacio interior.
+            -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!-- El botón cambia de color al pasar el ratón -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#68438F"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <!--
+        CONTENEDOR PRINCIPAL
+
+        Se utilizan dos filas:
+        - Auto: encabezado con la altura que necesite.
+        - *: zona de contenido con el espacio restante.
+    -->
+    <Grid Margin="30,25">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ENCABEZADO -->
+        <StackPanel Grid.Row="0"
+                    Margin="0,0,0,25">
+
+            <TextBlock Text="Mi perfil"
+                       FontSize="23"
+                       FontWeight="Bold"
+                       Foreground="#382D43"/>
+
+            <TextBlock Text="Información de tu cuenta y progreso"
+                       FontSize="13"
+                       Foreground="#918797"
+                       Margin="0,7,0,0"/>
+
+        </StackPanel>
+
+        <!--
+            CONTENIDO DESPLAZABLE
+
+            ScrollViewer evita que se pierda información cuando
+            la ventana tiene menos espacio disponible.
+        -->
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+
+            <!--
+                DISTRIBUCIÓN EN DOS COLUMNAS
+
+                La columna izquierda tiene 230 unidades, igual
+                que en la sección Perfil de MainWindow.
+
+                La derecha ocupa el espacio restante.
+            -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- ===================================== -->
+                <!-- COLUMNA IZQUIERDA: RESUMEN DEL PERFIL -->
+                <!-- ===================================== -->
+
+                <Border Grid.Column="0"
+                        Background="#EEE5F5"
+                        CornerRadius="10"
+                        Padding="20"
+                        Margin="0,0,15,0"
+                        VerticalAlignment="Top"
+                        MinHeight="390">
+
+                    <!--
+                        StackPanel organiza verticalmente la imagen,
+                        el nombre, el correo y el nivel.
+
+                        El ancho disponible evita que los textos
+                        se salgan de los límites de la tarjeta.
+                    -->
+                    <StackPanel HorizontalAlignment="Stretch">
+
+                        <!--
+                            Imagen de perfil.
+                            Por ahora se muestra un círculo vacío.
+                            Después se utilizará Usuario.Imagen.
+                        -->
+                        <Border x:Name="contenedorImagenPerfil"
+                                Width="105"
+                                Height="105"
+                                Background="#F9EAF1"
+                                CornerRadius="55"
+                                HorizontalAlignment="Center"
+                                Margin="0,10,0,18"/>
+
+                        <!--
+                            Nombre del usuario.
+                            TextWrapping permite dividir nombres largos
+                            en varias líneas sin cortar el texto.
+                        -->
+                        <TextBlock x:Name="txtNombrePerfilVista"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#54376F"
+                                   HorizontalAlignment="Stretch"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,0,5"/>
+
+                        <!--
+                            Correo electrónico del usuario.
+                            También permite varias líneas.
+                        -->
+                        <TextBlock x:Name="txtEmailPerfil"
+                                   FontSize="11"
+                                   Foreground="#9988A8"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,0,20"/>
+
+                        <!--
+                            NIVEL ACTUAL
+
+                            La tarjeta morada ocupa el ancho disponible.
+                            El dato llegará desde Usuario.Nivel.
+                        -->
+                        <Border Background="#7954A1"
+                                CornerRadius="8"
+                                Padding="15,15"
+                                HorizontalAlignment="Stretch">
+
+                            <StackPanel>
+
+                                <TextBlock Text="NIVEL ACTUAL"
+                                           FontSize="10"
+                                           Foreground="#E4D8EE"
+                                           HorizontalAlignment="Center"/>
+
+                                <TextBlock x:Name="txtNivelPerfil"
+                                           FontSize="34"
+                                           FontWeight="Bold"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,5,0,0"/>
+
+                            </StackPanel>
+                        </Border>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- ===================================== -->
+                <!-- COLUMNA DERECHA: DATOS DEL USUARIO -->
+                <!-- ===================================== -->
+
+                <Border Grid.Column="1"
+                        Background="White"
+                        BorderBrush="#E9E0ED"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="25"
+                        VerticalAlignment="Top"
+                        MinHeight="390">
+
+                    <StackPanel>
+
+                        <!-- DATOS PERSONALES -->
+                        <TextBlock Text="Datos personales"
+                                   FontSize="17"
+                                   FontWeight="Bold"
+                                   Foreground="#54376F"
+                                   Margin="0,0,0,25"/>
+
+                        <!--
+                            Nombre editable.
+                            Posteriormente se validará antes de
+                            guardar cualquier cambio en Firebase.
+                        -->
+                        <TextBlock Text="Nombre"
+                                   Foreground="#918797"
+                                   FontSize="12"/>
+
+                        <TextBox x:Name="txtNombrePerfil"
+                                 Style="{StaticResource Campo}"
+                                 Margin="0,8,0,20"/>
+
+                        <!--
+                            Correo electrónico de la cuenta.
+                            IsReadOnly=True impide su modificación.
+                        -->
+                        <TextBlock Text="Correo electrónico"
+                                   Foreground="#918797"
+                                   FontSize="12"/>
+
+                        <TextBox x:Name="txtCorreoPerfil"
+                                 Style="{StaticResource Campo}"
+                                 Margin="0,8,0,20"
+                                 IsReadOnly="True"/>
+
+                        <!-- Separación entre datos y estadísticas -->
+                        <Separator Background="#E9E0ED"
+                                   Margin="0,5,0,20"/>
+
+                        <!-- PROGRESO -->
+                        <TextBlock Text="Progreso"
+                                   FontSize="17"
+                                   FontWeight="Bold"
+                                   Foreground="#54376F"
+                                   Margin="0,0,0,20"/>
+
+                        <!--
+                            Grid con dos columnas iguales.
+                            Muestra los valores de experiencia y puntos.
+                        -->
+                        <Grid Margin="0,0,0,15">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Experiencia acumulada -->
+                            <StackPanel Grid.Column="0">
+
+                                <TextBlock Text="Experiencia"
+                                           Foreground="#918797"
+                                           FontSize="12"/>
+
+                                <TextBlock x:Name="txtExperienciaPerfil"
+                                           Foreground="#7954A1"
+                                           FontSize="24"
+                                           FontWeight="Bold"
+                                           Margin="0,7,0,0"/>
+
+                            </StackPanel>
+
+                            <!-- Puntos disponibles -->
+                            <StackPanel Grid.Column="1"
+                                        Margin="12,0,0,0">
+
+                                <TextBlock Text="Puntos"
+                                           Foreground="#918797"
+                                           FontSize="12"/>
+
+                                <TextBlock x:Name="txtPuntosPerfil"
+                                           Foreground="#A6537C"
+                                           FontSize="24"
+                                           FontWeight="Bold"
+                                           Margin="0,7,0,0"/>
+
+                            </StackPanel>
+                        </Grid>
+
+                        <!--
+                            BOTÓN GUARDAR CAMBIOS
+
+                            El ancho mínimo, la altura y el Padding
+                            garantizan espacio suficiente para el texto.
+
+                            De momento no tiene evento Click.
+                            Su funcionamiento se implementará después.
+                        -->
+                        <Button x:Name="btnGuardarPerfil"
+                                Content="Guardar cambios"
+                                Style="{StaticResource BotonMorado}"
+                                HorizontalAlignment="Left"
+                                Margin="0,18,0,0"/>
+
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Window>
