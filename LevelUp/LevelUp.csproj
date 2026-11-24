@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <!-- Configuración local de Firebase (no se sube a GitHub). Se copia junto al .exe. -->
+    <None Update="firebase.config.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
