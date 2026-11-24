@@ -58,6 +58,6 @@ dotnet test LevelUp/LevelUp.slnx
 /usuarios/{uid}/actividades/{id}  Tiempo dedicado a cada misión (misionId → misión)
 ```
 
-Las reglas solo permiten leer y escribir en `/usuarios/{uid}` cuando el usuario ha iniciado sesión y su `uid` coincide.
+Las reglas ([`firebase/database.rules.json`](firebase/database.rules.json)) solo permiten leer y escribir en `/usuarios/{uid}` cuando el usuario ha iniciado sesión y su `uid` coincide. El catálogo se puede leer con la sesión iniciada, pero nadie puede escribir en él. Además validan los campos esenciales: títulos, experiencia entre 1 y 500, fechas `yyyy-MM-dd`, minutos entre 1 y 1440, que una actividad apunte a una misión existente y que la experiencia del progreso nunca disminuya.
 
 El esquema completo con los campos de cada nodo está en [`firebase/esquema.md`](firebase/esquema.md) y la exportación con datos de prueba en [`firebase/levelup-export.json`](firebase/levelup-export.json).
