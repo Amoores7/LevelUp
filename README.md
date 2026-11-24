@@ -32,6 +32,22 @@ El acceso a la base de datos usa `HttpClient` y JSON contra la API REST: GET par
 3. Compilar y ejecutar (F5).
 4. Iniciar sesión con una de las cuentas de prueba creadas en Firebase Authentication.
 
+## Pruebas
+
+El proyecto `LevelUp.Tests` (xUnit) comprueba las funciones principales sin conectarse a Firebase: las respuestas de la base de datos y de Authentication se simulan.
+
+- **Reglas de progreso**: niveles, logros y que nunca se conceden puntos dos veces por la misma misión.
+- **Validaciones**: campos obligatorios, números, fechas y relaciones antes de guardar.
+- **Autenticación**: inicio de sesión, renovación del token y sesión caducada.
+- **Acceso a Firebase**: GET, POST, PATCH, DELETE, rutas `.json` con el token, escritura condicional con ETag y traducción de errores.
+- **Operaciones de datos**: borrado multipath de una misión con sus actividades y reintento al completar si otra sesión cambió el progreso.
+
+Para ejecutarlas: en Visual Studio, menú **Prueba → Ejecutar todas las pruebas**, o desde la carpeta del repositorio:
+
+```
+dotnet test LevelUp/LevelUp.slnx
+```
+
 ## Datos en Firebase
 
 ```
@@ -43,3 +59,5 @@ El acceso a la base de datos usa `HttpClient` y JSON contra la API REST: GET par
 ```
 
 Las reglas solo permiten leer y escribir en `/usuarios/{uid}` cuando el usuario ha iniciado sesión y su `uid` coincide.
+
+El esquema completo con los campos de cada nodo está en [`firebase/esquema.md`](firebase/esquema.md) y la exportación con datos de prueba en [`firebase/levelup-export.json`](firebase/levelup-export.json).
