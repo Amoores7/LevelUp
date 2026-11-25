@@ -2,3 +2,6 @@
 bin/
 obj/
 *.csproj.user
+
+# Configuración local de Firebase con la API key (no se sube)
+LevelUp/firebase.config.json

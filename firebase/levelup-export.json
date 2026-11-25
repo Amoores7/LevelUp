@@ -1,0 +1,345 @@
+{
+  "catalogo": {
+    "logros": {
+      "lg01": {
+        "condicion": {
+          "tipo": "completadas",
+          "valor": 1
+        },
+        "descripcion": "Completa tu primera misión.",
+        "icono": "🌱",
+        "puntos": 10,
+        "titulo": "Primer paso"
+      },
+      "lg02": {
+        "condicion": {
+          "tipo": "completadas",
+          "valor": 5
+        },
+        "descripcion": "Completa 5 misiones.",
+        "icono": "🔥",
+        "puntos": 20,
+        "titulo": "Constante"
+      },
+      "lg03": {
+        "condicion": {
+          "tipo": "completadas",
+          "valor": 10
+        },
+        "descripcion": "Completa 10 misiones.",
+        "icono": "⚡",
+        "puntos": 40,
+        "titulo": "Imparable"
+      },
+      "lg04": {
+        "condicion": {
+          "tipo": "completadas",
+          "valor": 25
+        },
+        "descripcion": "Completa 25 misiones.",
+        "icono": "👑",
+        "puntos": 100,
+        "titulo": "Leyenda"
+      },
+      "lg05": {
+        "condicion": {
+          "tipo": "diarias",
+          "valor": 3
+        },
+        "descripcion": "Completa 3 retos diarios.",
+        "icono": "📅",
+        "puntos": 25,
+        "titulo": "Rutina"
+      },
+      "lg06": {
+        "condicion": {
+          "tipo": "diarias",
+          "valor": 10
+        },
+        "descripcion": "Completa 10 retos diarios.",
+        "icono": "🛡️",
+        "puntos": 50,
+        "titulo": "Hábito de hierro"
+      },
+      "lg07": {
+        "condicion": {
+          "tipo": "unicas",
+          "valor": 1
+        },
+        "descripcion": "Completa una misión única.",
+        "icono": "🎯",
+        "puntos": 30,
+        "titulo": "Meta cumplida"
+      },
+      "lg08": {
+        "condicion": {
+          "tipo": "unicas",
+          "valor": 5
+        },
+        "descripcion": "Completa 5 misiones únicas.",
+        "icono": "🏆",
+        "puntos": 75,
+        "titulo": "Coleccionista de metas"
+      },
+      "lg09": {
+        "condicion": {
+          "tipo": "nivel",
+          "valor": 2
+        },
+        "descripcion": "Alcanza el nivel 2.",
+        "icono": "⬆️",
+        "puntos": 20,
+        "titulo": "Subiendo"
+      },
+      "lg10": {
+        "condicion": {
+          "tipo": "nivel",
+          "valor": 5
+        },
+        "descripcion": "Alcanza el nivel 5.",
+        "icono": "⭐",
+        "puntos": 50,
+        "titulo": "Veterano"
+      },
+      "lg11": {
+        "condicion": {
+          "tipo": "nivel",
+          "valor": 10
+        },
+        "descripcion": "Alcanza el nivel 10.",
+        "icono": "🌟",
+        "puntos": 120,
+        "titulo": "Maestro"
+      },
+      "lg12": {
+        "condicion": {
+          "tipo": "experiencia",
+          "valor": 500
+        },
+        "descripcion": "Consigue 500 puntos de experiencia.",
+        "icono": "💎",
+        "puntos": 60,
+        "titulo": "Medio millar"
+      }
+    }
+  },
+  "usuarios": {
+    "hzOybVjXymZsv6DOYza1AeiTNKl2": {
+      "actividades": {
+        "-OCaAct0000000000A01": {
+          "descripcion": "Capítulos 1 y 2",
+          "fecha": "2026-11-20",
+          "minutos": 25,
+          "misionId": "-OCaMis0000000000A01"
+        },
+        "-OCaAct0000000000A02": {
+          "descripcion": "Capítulo 3",
+          "fecha": "2026-11-21",
+          "minutos": 20,
+          "misionId": "-OCaMis0000000000A01"
+        },
+        "-OCaAct0000000000A03": {
+          "descripcion": "Módulo de colecciones",
+          "fecha": "2026-11-17",
+          "minutos": 90,
+          "misionId": "-OCaMis0000000000A03"
+        },
+        "-OCaAct0000000000A04": {
+          "descripcion": "Examen final del curso",
+          "fecha": "2026-11-18",
+          "minutos": 45,
+          "misionId": "-OCaMis0000000000A03"
+        },
+        "-OCaAct0000000000A05": {
+          "descripcion": "Diseño de la base de datos",
+          "fecha": "2026-11-22",
+          "minutos": 120,
+          "misionId": "-OCaMis0000000000A05"
+        },
+        "-OCaAct0000000000A06": {
+          "descripcion": "Capítulo 4",
+          "fecha": "2026-11-22",
+          "minutos": 30,
+          "misionId": "-OCaMis0000000000A01"
+        }
+      },
+      "misiones": {
+        "-OCaMis0000000000A01": {
+          "categoria": "Estudio",
+          "creada": "2026-11-15",
+          "descripcion": "Leer cualquier libro antes de dormir.",
+          "estado": "En curso",
+          "experiencia": 20,
+          "tipo": "Diaria",
+          "titulo": "Leer 20 minutos"
+        },
+        "-OCaMis0000000000A02": {
+          "categoria": "Salud",
+          "creada": "2026-11-15",
+          "descripcion": "Salir a caminar después de clase.",
+          "estado": "Pendiente",
+          "experiencia": 15,
+          "tipo": "Diaria",
+          "titulo": "Caminar 8.000 pasos"
+        },
+        "-OCaMis0000000000A03": {
+          "categoria": "Estudio",
+          "creada": "2026-11-01",
+          "descripcion": "Completar el curso online de C# básico.",
+          "estado": "Completada",
+          "experiencia": 150,
+          "fechaLimite": "2026-11-30",
+          "tipo": "Única",
+          "titulo": "Terminar curso de C#"
+        },
+        "-OCaMis0000000000A04": {
+          "categoria": "Hogar",
+          "creada": "2026-11-20",
+          "descripcion": "Tirar papeles y organizar cajones.",
+          "estado": "Pendiente",
+          "experiencia": 40,
+          "fechaLimite": "2026-12-05",
+          "tipo": "Única",
+          "titulo": "Ordenar el escritorio"
+        },
+        "-OCaMis0000000000A05": {
+          "categoria": "Estudio",
+          "creada": "2026-11-20",
+          "descripcion": "Subir la release v1.0 a GitHub.",
+          "estado": "En curso",
+          "experiencia": 200,
+          "fechaLimite": "2026-12-15",
+          "tipo": "Única",
+          "titulo": "Entregar proyecto WPF"
+        },
+        "-OCaMis0000000000A06": {
+          "categoria": "Bienestar",
+          "creada": "2026-11-22",
+          "descripcion": "",
+          "estado": "Pendiente",
+          "experiencia": 10,
+          "tipo": "Diaria",
+          "titulo": "Meditar 10 minutos"
+        }
+      },
+      "perfil": {
+        "email": "prueba1@levelup.com",
+        "nombre": "carlos (prueba1)"
+      },
+      "progreso": {
+        "completados": {
+          "-OCaMis0000000000A01": {
+            "2026-11-20": {
+              "experiencia": 20,
+              "fecha": "2026-11-20"
+            },
+            "2026-11-21": {
+              "experiencia": 20,
+              "fecha": "2026-11-21"
+            },
+            "2026-11-22": {
+              "experiencia": 20,
+              "fecha": "2026-11-22"
+            },
+            "2026-11-24": {
+              "experiencia": 20,
+              "fecha": "2026-11-24"
+            }
+          },
+          "-OCaMis0000000000A03": {
+            "unica": {
+              "experiencia": 150,
+              "fecha": "2026-11-18"
+            }
+          }
+        },
+        "experiencia": 230,
+        "logros": {
+          "lg01": "2026-11-18",
+          "lg02": "2026-11-24",
+          "lg05": "2026-11-22",
+          "lg07": "2026-11-18",
+          "lg09": "2026-11-18"
+        },
+        "nivel": 3,
+        "puntos": 335
+      }
+    },
+    "qFqZyMmLzVgIzJhPvUbyU6hy5ro1": {
+      "actividades": {
+        "-OCaAct0000000000B01": {
+          "descripcion": "Entrenamiento 3 km",
+          "fecha": "2026-11-23",
+          "minutos": 22,
+          "misionId": "-OCaMis0000000000B03"
+        },
+        "-OCaAct0000000000B02": {
+          "descripcion": "Primeras 50 páginas",
+          "fecha": "2026-11-23",
+          "minutos": 60,
+          "misionId": "-OCaMis0000000000B04"
+        }
+      },
+      "misiones": {
+        "-OCaMis0000000000B01": {
+          "categoria": "Salud",
+          "creada": "2026-11-22",
+          "descripcion": "",
+          "estado": "En curso",
+          "experiencia": 10,
+          "tipo": "Diaria",
+          "titulo": "Beber 2 litros de agua"
+        },
+        "-OCaMis0000000000B02": {
+          "categoria": "Estudio",
+          "creada": "2026-11-22",
+          "descripcion": "Usar la app de vocabulario.",
+          "estado": "Pendiente",
+          "experiencia": 15,
+          "tipo": "Diaria",
+          "titulo": "Aprender 10 palabras de inglés"
+        },
+        "-OCaMis0000000000B03": {
+          "categoria": "Deporte",
+          "creada": "2026-11-22",
+          "descripcion": "Primera carrera de 5 km sin parar.",
+          "estado": "Pendiente",
+          "experiencia": 120,
+          "fechaLimite": "2026-12-20",
+          "tipo": "Única",
+          "titulo": "Correr 5 km"
+        },
+        "-OCaMis0000000000B04": {
+          "categoria": "Ocio",
+          "creada": "2026-11-22",
+          "descripcion": "",
+          "estado": "En curso",
+          "experiencia": 100,
+          "fechaLimite": "2026-12-31",
+          "tipo": "Única",
+          "titulo": "Leer un libro completo"
+        }
+      },
+      "perfil": {
+        "email": "prueba2@levelup.com",
+        "nombre": "Ana (prueba2)"
+      },
+      "progreso": {
+        "completados": {
+          "-OCaMis0000000000B01": {
+            "2026-11-23": {
+              "experiencia": 10,
+              "fecha": "2026-11-23"
+            }
+          }
+        },
+        "experiencia": 10,
+        "logros": {
+          "lg01": "2026-11-23"
+        },
+        "nivel": 1,
+        "puntos": 20
+      }
+    }
+  }
+}

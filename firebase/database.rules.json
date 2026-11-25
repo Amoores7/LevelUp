@@ -1,0 +1,106 @@
+{
+  "rules": {
+    "catalogo": {
+      ".read": "auth != null",
+      ".write": false
+    },
+    "usuarios": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null && auth.uid == $uid",
+
+        "perfil": {
+          ".validate": "newData.hasChildren(['nombre', 'email'])",
+          "nombre": {
+            ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 50"
+          },
+          "email": {
+            ".validate": "newData.isString() && newData.val() == auth.token.email"
+          },
+          "$otro": { ".validate": false }
+        },
+
+        "progreso": {
+          ".validate": "newData.hasChildren(['experiencia', 'nivel', 'puntos'])",
+          "experiencia": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && (!data.exists() || newData.val() >= data.val())"
+          },
+          "nivel": {
+            ".validate": "newData.isNumber() && newData.val() >= 1"
+          },
+          "puntos": {
+            ".validate": "newData.isNumber() && newData.val() >= 0"
+          },
+          "completados": {
+            "$misionId": {
+              "$clave": {
+                ".validate": "newData.hasChildren(['fecha', 'experiencia']) && (!data.exists() || data.child('fecha').val() == newData.child('fecha').val())",
+                "fecha": { ".validate": "newData.isString() && newData.val().matches(/^\\d{4}-\\d{2}-\\d{2}$/)" },
+                "experiencia": { ".validate": "newData.isNumber() && newData.val() > 0" },
+                "$otro": { ".validate": false }
+              }
+            }
+          },
+          "logros": {
+            "$logroId": {
+              ".validate": "newData.isString() && root.child('catalogo/logros/' + $logroId).exists()"
+            }
+          },
+          "$otro": { ".validate": false }
+        },
+
+        "misiones": {
+          "$misionId": {
+            ".validate": "newData.hasChildren(['titulo', 'categoria', 'experiencia', 'tipo', 'estado'])",
+            "titulo": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 60"
+            },
+            "descripcion": {
+              ".validate": "newData.isString() && newData.val().length <= 300"
+            },
+            "categoria": {
+              ".validate": "newData.isString() && newData.val().length > 0"
+            },
+            "experiencia": {
+              ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 500"
+            },
+            "tipo": {
+              ".validate": "newData.val() == 'Diaria' || newData.val() == 'Única'"
+            },
+            "estado": {
+              ".validate": "newData.val() == 'Pendiente' || newData.val() == 'En curso' || newData.val() == 'Completada'"
+            },
+            "fechaLimite": {
+              ".validate": "newData.isString() && newData.val().matches(/^\\d{4}-\\d{2}-\\d{2}$/)"
+            },
+            "creada": {
+              ".validate": "newData.isString()"
+            },
+            "$otro": { ".validate": false }
+          }
+        },
+
+        "actividades": {
+          "$actividadId": {
+            ".validate": "newData.hasChildren(['misionId', 'descripcion', 'fecha', 'minutos'])",
+            "misionId": {
+              ".validate": "newData.isString() && root.child('usuarios/' + $uid + '/misiones/' + newData.val()).exists()"
+            },
+            "descripcion": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 100"
+            },
+            "fecha": {
+              ".validate": "newData.isString() && newData.val().matches(/^\\d{4}-\\d{2}-\\d{2}$/)"
+            },
+            "minutos": {
+              ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 1440"
+            },
+            "$otro": { ".validate": false }
+          }
+        },
+
+        "$otro": { ".validate": false }
+      }
+    }
+  }
+}
