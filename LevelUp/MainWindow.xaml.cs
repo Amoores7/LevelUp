@@ -244,11 +244,24 @@ namespace LevelUp
             }
         }
 
-        /// <summary>Abre la ventana de perfil.</summary>
+        /// <summary>Abre la ventana de perfil y, si se cambió el nombre, lo vuelve a mostrar.</summary>
         private void btnPerfil_Click(object sender, RoutedEventArgs e)
         {
-            var perfil = new PerfilWindow { Owner = this };
-            perfil.ShowDialog();
+            var ventana = new PerfilWindow(sesion, progreso) { Owner = this };
+            ventana.ShowDialog();
+
+            if (ventana.MensajeSesionCaducada != null)
+            {
+                VolverAlLogin(ventana.MensajeSesionCaducada);
+                return;
+            }
+
+            if (ventana.NombreCambiado)
+            {
+                MostrarDatosUsuario();
+                MostrarInicio();
+                MostrarEstado("Perfil guardado.", TipoEstado.Correcto);
+            }
         }
 
         private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)

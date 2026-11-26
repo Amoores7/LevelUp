@@ -15,6 +15,7 @@ namespace LevelUp.Services
         public const int MaxXp = 500;
         public const int MaxDescripcionActividad = 100;
         public const int MaxMinutos = 1440;
+        public const int MaxNombre = 50;
 
         public static List<string> ValidarLogin(string correo, string password)
         {
@@ -96,6 +97,16 @@ namespace LevelUp.Services
             else if (minutos < 1 || minutos > MaxMinutos)
                 errores.Add($"El tiempo dedicado debe estar entre 1 y {MaxMinutos} minutos.");
 
+            return errores;
+        }
+
+        public static List<string> ValidarNombre(string nombre)
+        {
+            var errores = new List<string>();
+            if (string.IsNullOrWhiteSpace(nombre))
+                errores.Add("El nombre es obligatorio.");
+            else if (nombre.Trim().Length > MaxNombre)
+                errores.Add($"El nombre no puede superar {MaxNombre} caracteres.");
             return errores;
         }
     }

@@ -330,14 +330,16 @@
                             El ancho mínimo, la altura y el Padding
                             garantizan espacio suficiente para el texto.
 
-                            De momento no tiene evento Click.
-                            Su funcionamiento se implementará después.
+                            Al pulsarlo se valida el nombre y se guarda en
+                            Firebase (btnGuardarPerfil_Click).
                         -->
                         <Button x:Name="btnGuardarPerfil"
                                 Content="Guardar cambios"
                                 Style="{StaticResource BotonMorado}"
                                 HorizontalAlignment="Left"
-                                Margin="0,18,0,0"/>
+                                Margin="0,18,0,0"
+                                IsDefault="True"
+                                Click="btnGuardarPerfil_Click"/>
 
                     </StackPanel>
                 </Border>

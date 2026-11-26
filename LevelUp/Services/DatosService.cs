@@ -49,6 +49,17 @@ namespace LevelUp.Services
             return perfil;
         }
 
+        public async Task<Usuario> ObtenerPerfilAsync()
+        {
+            var perfil = await firebase.GetAsync<Usuario>(Ruta("perfil")) ?? new Usuario();
+            perfil.Id = uid;
+            return perfil;
+        }
+
+        /// <summary>Modifica solo el nombre del perfil (PATCH): el correo no se toca.</summary>
+        public Task ModificarNombreAsync(string nombre) =>
+            firebase.PatchAsync(Ruta("perfil"), new { nombre });
+
         public async Task<Progreso> ObtenerProgresoAsync() =>
             await firebase.GetAsync<Progreso>(Ruta("progreso")) ?? new Progreso();
 
