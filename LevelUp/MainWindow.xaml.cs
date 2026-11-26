@@ -1,26 +1,18 @@
-<<<<<<< HEAD
-﻿
-using System.Windows;
-=======
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using LevelUp.Models;
 using LevelUp.Services;
->>>>>>> origin/main
 using LevelUp.Views;
 
 namespace LevelUp
 {
-<<<<<<< HEAD
-=======
     /// <summary>
     /// Ventana principal. Este archivo tiene lo común: carga de datos, navegación,
     /// mensajes de estado y la vista Inicio. Cada vista tiene su propio archivo parcial:
     /// MainWindow.Misiones.cs, MainWindow.Actividad.cs, MainWindow.Logros.cs y MainWindow.Perfil.cs.
     /// </summary>
->>>>>>> origin/main
     public partial class MainWindow : Window
     {
         private enum TipoEstado { Cargando, Correcto, Error, Info }
@@ -41,16 +33,6 @@ namespace LevelUp
         public MainWindow(Sesion sesion)
         {
             InitializeComponent();
-<<<<<<< HEAD
-
-            // Mostrar Inicio al abrir la aplicación
-            MostrarInicio();
-        }
-
-        private void MostrarInicio()
-        {
-           
-=======
             this.sesion = sesion;
 
             PrepararListasDesplegables();
@@ -58,20 +40,10 @@ namespace LevelUp
             MostrarVista(vistaInicio, "Inicio", btnInicio);
 
             Loaded += async (_, _) => await EjecutarAsync("Cargando tus datos…", RecargarDatosAsync, "Datos cargados.");
->>>>>>> origin/main
         }
 
         private void PrepararListasDesplegables()
         {
-<<<<<<< HEAD
-            MostrarInicio();
-        }
-
-        private void btnMisiones_Click(object sender, RoutedEventArgs e)
-        {
-            ContenedorVistas.Content = new MisionesView();
-            txtTituloPagina.Text = "Misiones";
-=======
             cmbFiltroEstado.ItemsSource = new[] { "Todas", "Pendiente", "En curso", "Completada", "Diarias", "Únicas" };
             cmbFiltroEstado.SelectedIndex = 0;
 
@@ -121,20 +93,15 @@ namespace LevelUp
             }
 
             RefrescarVistas();
->>>>>>> origin/main
         }
 
         private void RefrescarVistas()
         {
-<<<<<<< HEAD
-            
-=======
             MostrarDatosUsuario();
             MostrarInicio();
             MostrarMisiones();
             MostrarActividades();
             MostrarLogros();
->>>>>>> origin/main
         }
 
         /// <summary>
@@ -143,8 +110,6 @@ namespace LevelUp
         /// </summary>
         private async Task<bool> EjecutarAsync(string mensajeCarga, Func<Task> operacion, string? mensajeCorrecto = null)
         {
-<<<<<<< HEAD
-=======
             if (ocupado)
                 return false;
 
@@ -214,15 +179,11 @@ namespace LevelUp
             };
             txtEstado.Text = $"{icono}  {mensaje}   ·   {DateTime.Now:HH:mm:ss}";
             txtEstado.Foreground = (Brush)new BrushConverter().ConvertFromString(color)!;
->>>>>>> origin/main
         }
 
         /// <summary>Muestra los errores de validación juntos y en la barra de estado.</summary>
         private bool MostrarErroresValidacion(List<string> errores)
         {
-<<<<<<< HEAD
-            
-=======
             if (errores.Count == 0)
                 return false;
 
@@ -329,7 +290,6 @@ namespace LevelUp
                                    .ToList();
             listaProximas.ItemsSource = proximas;
             txtProximasVacio.Visibility = proximas.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
->>>>>>> origin/main
         }
     }
 }
