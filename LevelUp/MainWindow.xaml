@@ -68,10 +68,9 @@
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Bottom" Margin="0,0,0,15">
-                    <!-- Perfil: acordar con Oleg el nombre del evento. Quita los comentarios cuando exista
+                    <!-- Perfil: abre la ventana PerfilWindow -->
                     <Button x:Name="btnPerfil" Content="Perfil"
                             Style="{StaticResource BotonMenu}" Click="btnPerfil_Click"/>
-                    -->
                     <Button x:Name="btnCerrarSesion" Content="Cerrar sesión"
                             Style="{StaticResource BotonMenu}" Click="btnCerrarSesion_Click"/>
                 </StackPanel>
