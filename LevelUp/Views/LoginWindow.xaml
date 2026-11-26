@@ -182,7 +182,9 @@
                 <Button x:Name="btnLogin"
                         Content="Iniciar sesión"
                         Style="{StaticResource BotonPrincipal}"
-                        Margin="0,32,0,0"/>
+                        Margin="0,32,0,0"
+                        IsDefault="True"
+                        Click="btnLogin_Click"/>
 
                 <TextBlock x:Name="txtError"
                            Text=""
