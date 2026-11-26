@@ -244,6 +244,13 @@ namespace LevelUp
             }
         }
 
+        /// <summary>Abre la ventana de perfil.</summary>
+        private void btnPerfil_Click(object sender, RoutedEventArgs e)
+        {
+            var perfil = new PerfilWindow { Owner = this };
+            perfil.ShowDialog();
+        }
+
         private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show(this, "¿Quieres cerrar la sesión?", "Cerrar sesión",
