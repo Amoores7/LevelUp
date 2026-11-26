@@ -2,7 +2,15 @@
 
 Aplicación de escritorio **WPF (C#, .NET 10)** que convierte objetivos personales en **misiones** con experiencia, niveles y logros. Los datos se guardan en **Firebase Realtime Database** y el acceso se hace con **Firebase Authentication** (correo y contraseña).
 
-Proyecto de las asignaturas Desarrollo de Interfaces y Computación en la Nube. Equipo: Atefa, Amores y Oleg.
+Proyecto de las asignaturas Desarrollo de Interfaces y Computación en la Nube.
+
+## Equipo y reparto del trabajo
+
+| Integrante | Parte |
+|---|---|
+| **Atefa** | Diseño de las vistas (XAML): ventana de acceso, menú, Inicio, Misiones, Logros y Actividad. |
+| **Oleg** | Perfil: ventana de perfil con los datos del jugador y el cambio de nombre. |
+| **Amores** | El resto: modelos, acceso a Firebase (REST y autenticación), reglas del juego, validaciones, lógica de las vistas, reglas de seguridad y datos de Firebase, pruebas y documentación. |
 
 ## Funciones
 
@@ -11,6 +19,7 @@ Proyecto de las asignaturas Desarrollo de Interfaces y Computación en la Nube. 
 - **Misiones**: crear, modificar, eliminar y completar misiones diarias o únicas, con búsqueda y filtros.
 - **Actividad**: registrar el tiempo dedicado a cada misión y consultarlo en un calendario.
 - **Logros**: insignias que se desbloquean al cumplir condiciones (misiones completadas, nivel, experiencia…).
+- **Perfil**: nombre, correo, nivel, experiencia y puntos del jugador, con la opción de cambiar el nombre.
 - **Sin puntos dobles**: una misión diaria solo da experiencia una vez al día y una única solo una vez. El progreso se guarda con escritura condicional (ETag) para evitar problemas de concurrencia.
 
 ## Estructura
@@ -19,7 +28,7 @@ Proyecto de las asignaturas Desarrollo de Interfaces y Computación en la Nube. 
 LevelUp/
 ├── Models/      Misión, Actividad, Logro, Progreso, Usuario
 ├── Services/    Acceso a Firebase (REST), autenticación, datos, reglas y validaciones
-├── Views/       Ventana de acceso y elementos de las vistas
+├── Views/       Ventanas de acceso y de perfil, y conversor del calendario
 └── MainWindow   Ventana principal (un archivo parcial por vista)
 ```
 
@@ -34,13 +43,13 @@ El acceso a la base de datos usa `HttpClient` y JSON contra la API REST: GET par
 
 ## Pruebas
 
-El proyecto `LevelUp.Tests` (xUnit) comprueba las funciones principales sin conectarse a Firebase: las respuestas de la base de datos y de Authentication se simulan.
+El proyecto `LevelUp.Tests` (xUnit, 99 pruebas) comprueba las funciones principales sin conectarse a Firebase: las respuestas de la base de datos y de Authentication se simulan.
 
 - **Reglas de progreso**: niveles, logros y que nunca se conceden puntos dos veces por la misma misión.
-- **Validaciones**: campos obligatorios, números, fechas y relaciones antes de guardar.
+- **Validaciones**: campos obligatorios, números, fechas y relaciones antes de guardar (también el nombre del perfil).
 - **Autenticación**: inicio de sesión, renovación del token y sesión caducada.
 - **Acceso a Firebase**: GET, POST, PATCH, DELETE, rutas `.json` con el token, escritura condicional con ETag y traducción de errores.
-- **Operaciones de datos**: borrado multipath de una misión con sus actividades y reintento al completar si otra sesión cambió el progreso.
+- **Operaciones de datos**: borrado multipath de una misión con sus actividades, reintento al completar si otra sesión cambió el progreso, y lectura y cambio del perfil.
 
 Para ejecutarlas: en Visual Studio, menú **Prueba → Ejecutar todas las pruebas**, o desde la carpeta del repositorio:
 
