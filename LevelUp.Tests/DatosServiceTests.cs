@@ -30,6 +30,35 @@ namespace LevelUp.Tests
         private static bool EsRuta(PeticionRegistrada p, string ruta) => p.Url.Contains($"/{ruta}.json?");
 
         // ------------------------------------------------------------------
+        // Perfil
+        // ------------------------------------------------------------------
+
+        [Fact]
+        public async Task ObtenerPerfil_LeeElPerfilYPoneElUidComoId()
+        {
+            servidor.Responder = _ => FakeHttpHandler.Json(HttpStatusCode.OK,
+                """{ "nombre": "carlos (prueba1)", "email": "prueba1@levelup.com" }""");
+
+            var perfil = await datos.ObtenerPerfilAsync();
+
+            Assert.True(EsRuta(servidor.Peticiones[0], "usuarios/u1/perfil"));
+            Assert.Equal("carlos (prueba1)", perfil.Nombre);
+            Assert.Equal("prueba1@levelup.com", perfil.Email);
+            Assert.Equal(Uid, perfil.Id);
+        }
+
+        [Fact]
+        public async Task ModificarNombre_HacePatchSoloDelNombre()
+        {
+            await datos.ModificarNombreAsync("Carlos");
+
+            var patch = Assert.Single(servidor.Peticiones);
+            Assert.Equal(HttpMethod.Patch, patch.Metodo);
+            Assert.True(EsRuta(patch, "usuarios/u1/perfil"));
+            Assert.Equal("""{"nombre":"Carlos"}""", patch.Cuerpo); // el correo no se envía
+        }
+
+        // ------------------------------------------------------------------
         // Rutas
         // ------------------------------------------------------------------
 

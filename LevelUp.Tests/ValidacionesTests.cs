@@ -218,5 +218,36 @@ namespace LevelUp.Tests
         {
             Assert.Empty(ValidarActividad(textoMinutos: textoMinutos));
         }
+
+        // ------------------------------------------------------------------
+        // Perfil
+        // ------------------------------------------------------------------
+
+        [Fact]
+        public void ValidarNombre_NombreCorrecto_NoDaErrores()
+        {
+            Assert.Empty(Validaciones.ValidarNombre("Carlos"));
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void ValidarNombre_Vacio_DaError(string nombre)
+        {
+            Assert.Contains(Validaciones.ValidarNombre(nombre), e => e.Contains("nombre es obligatorio"));
+        }
+
+        [Fact]
+        public void ValidarNombre_DemasiadoLargo_DaError()
+        {
+            string nombre = new('a', Validaciones.MaxNombre + 1);
+            Assert.Contains(Validaciones.ValidarNombre(nombre), e => e.Contains("no puede superar 50"));
+        }
+
+        [Fact]
+        public void ValidarNombre_JustoEnElLimite_EsValido()
+        {
+            Assert.Empty(Validaciones.ValidarNombre(new string('a', Validaciones.MaxNombre)));
+        }
     }
 }
